@@ -1,0 +1,16 @@
+streamlit
+pandas
+numpy
+requests
+beautifulsoup4
+lxml
+sqlalchemy
+pydantic
+pyyaml
+python-dotenv
+networkx
+pyvis
+rapidfuzz
+tqdm
+tenacity
+loguru

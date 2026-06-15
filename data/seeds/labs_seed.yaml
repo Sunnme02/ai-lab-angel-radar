@@ -1,0 +1,38 @@
+# 种子实验室名单。MVP 用 seed 启动,再通过论文共同作者扩展学生节点。
+schools:
+  - name: Tsinghua University
+    aliases: [清华大学, Tsinghua]
+    labs:
+      - pi_name: Zhiyuan Liu
+        pi_name_cn: 刘知远
+        homepage_url: https://nlp.csai.tsinghua.edu.cn/~lzy/
+        keywords: [NLP, large language models, efficient fine-tuning, AI Agent]
+      - pi_name: Gao Huang
+        pi_name_cn: 黄高
+        keywords: [efficient deep learning, model compression, multimodal]
+
+  - name: Peking University
+    aliases: [北京大学, PKU]
+    labs:
+      - pi_name: Zhouchen Lin
+        pi_name_cn: 林宙辰
+        keywords: [optimization, efficient training, large models]
+      - pi_name: Yuxin Peng
+        pi_name_cn: 彭宇新
+        keywords: [multimodal, fine-grained, large language models]
+
+  - name: Fudan University
+    aliases: [复旦大学, Fudan]
+    labs:
+      - pi_name: Xipeng Qiu
+        pi_name_cn: 邱锡鹏
+        homepage_url: https://xpqiu.github.io/
+        keywords: [NLP, large language models, efficient fine-tuning, AI Agent]
+
+  - name: Shanghai Jiao Tong University
+    aliases: [上海交通大学, SJTU]
+    labs:
+      - pi_name: Weinan Zhang
+        pi_name_cn: 张伟楠
+        homepage_url: https://wnzhang.net/
+        keywords: [recommendation, LLM for recommendation, LoRA, AI Agent]

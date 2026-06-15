@@ -1,0 +1,38 @@
+# 运行参数(可被命令行覆盖)
+year_from: 2023
+year_to: 2026
+
+# 抓取上限(控制成本/限流)
+max_papers_per_lab: 60
+max_repos_per_author: 5
+max_student_candidates_per_lab: 20
+
+# 第一版 MVP 聚焦的方向关键词
+keywords:
+  - LoRA
+  - PEFT
+  - QLoRA
+  - Low-Rank Adaptation
+  - Parameter-Efficient Fine-Tuning
+  - LLM Systems
+  - AI Agent
+  - Multimodal
+  - AI Infra
+  - Model Compression
+  - Inference Optimization
+  - Recommendation
+  - Embodied AI
+  - AI for Finance
+
+database:
+  path: data/radar.db
+
+paths:
+  seeds: data/seeds/labs_seed.yaml
+  exports: data/exports
+
+# 网络礼貌
+http:
+  timeout: 25
+  retries: 4
+  rate_limit_per_sec: 5

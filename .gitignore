@@ -1,0 +1,19 @@
+# 密钥(绝不提交)
+.env
+
+# 数据/产物(可重新生成)
+data/radar.db
+data/exports/
+data/raw/
+data/processed/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+venv/
+.venv/
+
+# OS
+.DS_Store
