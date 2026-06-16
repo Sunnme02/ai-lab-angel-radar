@@ -7,7 +7,8 @@ import json
 
 import networkx as nx
 
-from ..models import (Authorship, Lab, Paper, Person, PersonRepoLink, Repo, Score)
+from ..models import (Authorship, Lab, Paper, Person, PersonRepoLink, Relationship,
+                      Repo, Score)
 
 
 def build_graph(sess):
@@ -135,15 +136,12 @@ def build_core_graph(sess):
                 if l.pi_name == p.name:
                     G.add_edge(nn, f"lab:{l.id}", relation="PI_OF")
 
-    # 学生 → lab(经论文,去重)
-    seen_member = set()
-    for a in sess.query(Authorship).all():
-        if a.person_id not in keep_people:
-            continue
-        pap = sess.get(Paper, a.paper_id)
-        if pap and pap.lab_id and (a.person_id, pap.lab_id) not in seen_member:
-            seen_member.add((a.person_id, pap.lab_id))
-            G.add_edge(f"person:{a.person_id}", f"lab:{pap.lab_id}", relation="MEMBER_OF")
+    # 导师 → 学生(ADVISES 置信度边,粗细=置信度;替代一刀切的 MEMBER_OF)
+    for rel in sess.query(Relationship).filter(Relationship.relation_type == "ADVISES").all():
+        sn, tn = f"person:{rel.source_id}", f"person:{rel.target_id}"
+        if sn in G and tn in G:
+            G.add_edge(sn, tn, relation="ADVISES", confidence=rel.confidence,
+                       weight=rel.confidence)
 
     # repo 节点 + 人→repo
     for link in repo_links:

@@ -1,5 +1,8 @@
 """Pipeline 编排(规格第9节):采集→消歧→分类→关系→评分→图谱→导出。"""
 import re
+from collections import defaultdict
+
+from rapidfuzz import fuzz
 
 from ..classifiers.keyword_classifier import classify_text, match_focus_keywords
 from ..classifiers.startup_signal_classifier import detect_signals
@@ -10,11 +13,11 @@ from ..collectors.web.homepage import fetch_homepage
 from ..config import Config
 from ..db import DB
 from ..entity_resolution.paper_matcher import find_or_create_paper
-from ..entity_resolution.people_matcher import find_or_create_person
+from ..entity_resolution.people_matcher import find_or_create_person, merge_duplicate_people
 from ..export import export_all
 from ..graph.build_graph import build_graph
 from ..graph.network_metrics import compute_centrality
-from ..models import (Authorship, Lab, Paper, Person, PersonRepoLink, Relationship, Repo)
+from ..models import (Authorship, Lab, Paper, Person, PersonRepoLink, Relationship, Repo, Score)
 from ..scoring.lab_score import score_lab
 from ..scoring.person_score import score_person
 from ..scoring.repo_score import score_repo
@@ -95,10 +98,6 @@ def process_lab(ctx: Context, school: str, lab_seed: dict):
                           {"author_order": a.get("order"), "is_first_author": is_first,
                            "is_corresponding_author": a.get("is_corresponding", False),
                            "affiliation_at_publication": inst0})
-                if is_first and not person.is_pi:
-                    person.is_student_candidate = True
-                    if person.role == "Unknown":
-                        person.role = "PhD"   # 一作默认按 PhD 候选(规格:无法确定时给 student_candidate)
                 _add_rel(db, sess, "person", person.id, "paper", paper.id,
                          "FIRST_AUTHOR_OF" if is_first else "AUTHOR_OF")
                 # 企业 affiliation → 产业连接信号
@@ -107,6 +106,9 @@ def process_lab(ctx: Context, school: str, lab_seed: dict):
                              "COLLABORATES_WITH_COMPANY", 0.6,
                              f"co-author affiliation: {inst0}", paper.url or "")
         sess.commit()
+
+    # 2.3b 师生关系置信度(合作频次 + 同机构 + 一作)→ ADVISES 边 + is_student_candidate
+    _compute_advisor_links(ctx, lab_id, pi_name, school)
 
     # 2.4 主页(实验室/PI 主页:成员信号 + GitHub 链接 + 创业信号)
     hp_url = lab_seed.get("homepage_url")
@@ -125,6 +127,51 @@ def process_lab(ctx: Context, school: str, lab_seed: dict):
         _collect_github(ctx, lab_id, pi_name, focus, lab_seed.get("homepage_url"))
     else:
         log.warning("无 GITHUB_TOKEN → 跳过 GitHub 采集(工程信号将偏低)")
+
+
+def _compute_advisor_links(ctx, lab_id, pi_name, school):
+    """从共同作者推断"导师→学生"置信度(不丢合作信息,只是不再硬贴学生标签)。
+
+    confidence = f(与PI合作论文数 joint, 是否同机构 same_inst, 是否当过一作 has_fa)。
+    写入 ADVISES 关系(PI→人,带 confidence);is_student_candidate = confidence>=0.5。
+    """
+    db = ctx.db
+    with db.session() as sess:
+        lab_paper_ids = [p.id for p in sess.query(Paper).filter(Paper.lab_id == lab_id).all()]
+        pi = sess.query(Person).filter(Person.is_pi == True,  # noqa: E712
+                                       Person.name == pi_name).first()
+        if not pi or not lab_paper_ids:
+            return
+        joint, has_fa = defaultdict(int), defaultdict(bool)
+        for a in sess.query(Authorship).filter(Authorship.paper_id.in_(lab_paper_ids)).all():
+            joint[a.person_id] += 1
+            if a.is_first_author:
+                has_fa[a.person_id] = True
+        school_l = school.lower()
+        for pid, jc in joint.items():
+            if pid == pi.id:
+                continue
+            person = sess.get(Person, pid)
+            aff = (person.affiliation or "").strip()
+            same = bool(aff and fuzz.partial_ratio(school_l, aff.lower()) >= 75)
+            diff = bool(aff and not same)        # 明确填了别的机构 = 外校合作者
+            if same:                              # 同校:最可能是其学生
+                conf = 0.85 if jc >= 3 else 0.7 if jc >= 2 else 0.55
+            elif not aff:                         # 机构缺失:很多真学生如此,按合作频次给
+                conf = 0.6 if jc >= 3 else 0.5 if jc >= 2 else 0.35
+            else:                                 # 外校:即使高频也只算"疑似合作者"
+                conf = 0.45 if jc >= 3 else 0.3 if jc >= 2 else 0.2
+            if has_fa[pid]:
+                conf = min(0.95, conf + 0.1)
+            if diff:                              # 外校硬上限,不让一作 boost 顶过学生阈值
+                conf = min(conf, 0.45)
+            conf = round(conf, 2)
+            person.is_student_candidate = conf >= 0.5
+            if person.is_student_candidate and person.role == "Unknown":
+                person.role = "PhD"
+            _add_rel(db, sess, "person", pi.id, "person", pid, "ADVISES", conf,
+                     f"合作{jc}篇 同机构={same} 当过一作={has_fa[pid]}")
+        sess.commit()
 
 
 def _resolve_github_login(ctx, name, homepage, hints):
@@ -186,6 +233,15 @@ def _collect_github(ctx, lab_id, pi_name, focus, pi_homepage=None):
 # ---------------- finalize:图谱中心性 → 评分 → 导出 ----------------
 def finalize(ctx: Context):
     db = ctx.db
+    with db.session() as sess:
+        merged = merge_duplicate_people(db, sess)
+        # 清理被合并/删除实体的孤儿分数
+        pid_set = {p.id for p in sess.query(Person.id).all()}
+        for s in sess.query(Score).filter(Score.entity_type == "person").all():
+            if s.entity_id not in pid_set:
+                sess.delete(s)
+        sess.commit()
+        log.info(f"实体消歧:合并重复人物节点 {merged} 个")
     with db.session() as sess:
         G = build_graph(sess)
         cen = compute_centrality(G)

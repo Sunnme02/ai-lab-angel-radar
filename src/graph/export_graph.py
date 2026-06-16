@@ -43,7 +43,13 @@ def to_pyvis_html(G, path, height="800px"):
         net.add_node(n, label=str(d.get("label", n))[:30], color=TYPE_COLOR.get(t, "#bbb"),
                      title=title, size=sz)
     for u, v, d in G.edges(data=True):
-        net.add_edge(u, v, title=d.get("relation", ""))
+        conf = d.get("confidence")
+        w = 1 + (conf * 6) if conf is not None else 1   # 置信度→边粗细
+        rel = d.get("relation", "")
+        title = rel + (f" (conf {conf})" if conf is not None else "")
+        # 低置信师生边画虚线
+        dashes = bool(conf is not None and conf < 0.6)
+        net.add_edge(u, v, title=title, width=w, dashes=dashes)
     net.set_options('{"physics":{"stabilization":{"iterations":150}}}')
     net.save_graph(path)
     _inject_legend(path)
