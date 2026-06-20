@@ -29,6 +29,8 @@ database:
 
 paths:
   seeds: data/seeds/labs_seed.yaml
+  seeds_extra: data/seeds/labs_seed_csrankings.yaml
+  csrankings_cache: data/raw/csrankings
   exports: data/exports
 
 # 网络礼貌

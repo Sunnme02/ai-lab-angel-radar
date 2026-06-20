@@ -65,6 +65,22 @@ class Config:
         with open(ROOT / self.settings["paths"]["seeds"], encoding="utf-8") as f:
             return yaml.safe_load(f)
 
+    def load_seeds_merged(self, paths=None):
+        """合并多个 seed(默认:手写 seeds + 可选 seeds_extra)。手写优先。"""
+        from .pipeline.seed_merge import merge_seeds
+        if paths is None:
+            paths = [self.settings["paths"]["seeds"]]
+            extra = self.settings["paths"].get("seeds_extra")
+            if extra and (ROOT / extra).exists():
+                paths.append(extra)
+        loaded = []
+        for p in paths:
+            fp = p if os.path.isabs(p) else (ROOT / p)
+            if os.path.exists(fp):
+                with open(fp, encoding="utf-8") as f:
+                    loaded.append(yaml.safe_load(f))
+        return merge_seeds(*loaded)
+
     @property
     def has_github(self):
         return bool(self.github_token)

@@ -66,12 +66,22 @@ def _inject_legend(path):
         f'<span style="width:14px;height:14px;border-radius:50%;background:{TYPE_COLOR[t]};'
         f'display:inline-block;margin-right:8px"></span>{label}</div>'
         for t, label in LEGEND_ITEMS)
+    # 边的图例:实线粗=高置信师生,虚线细=低置信疑似
+    edge_rows = (
+        '<div style="display:flex;align-items:center;margin:3px 0">'
+        '<span style="width:26px;border-top:4px solid #888;display:inline-block;margin-right:8px"></span>'
+        '实线/越粗 = 师生关系越确定</div>'
+        '<div style="display:flex;align-items:center;margin:3px 0">'
+        '<span style="width:26px;border-top:2px dashed #888;display:inline-block;margin-right:8px"></span>'
+        '虚线/越细 = 低置信(疑似合作者)</div>')
     legend = (
         '<div style="position:fixed;top:14px;right:14px;z-index:9999;background:rgba(255,255,255,.95);'
         'border:1px solid #ccc;border-radius:8px;padding:10px 14px;font:13px/1.4 -apple-system,'
         'Segoe UI,sans-serif;box-shadow:0 2px 8px rgba(0,0,0,.15)">'
-        '<div style="font-weight:600;margin-bottom:6px">图例</div>' + rows +
-        '<div style="margin-top:6px;color:#888;font-size:11px">节点越大=分数/stars 越高</div></div>')
+        '<div style="font-weight:600;margin-bottom:6px">节点</div>' + rows +
+        '<div style="margin-top:6px;color:#888;font-size:11px">节点越大=分数/stars 越高</div>'
+        '<div style="font-weight:600;margin:8px 0 4px;border-top:1px solid #eee;padding-top:6px">连线</div>'
+        + edge_rows + '</div>')
     try:
         with open(path, encoding="utf-8") as f:
             html = f.read()

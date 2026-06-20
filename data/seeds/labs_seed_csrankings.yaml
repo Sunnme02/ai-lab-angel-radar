@@ -1,0 +1,709 @@
+# 自动生成(CSRankings + OpenAlex 领域过滤),勿手改。
+schools:
+- name: Tsinghua University
+  aliases:
+  - 清华大学
+  - Tsinghua
+  labs:
+  - pi_name: Yang Liu
+    pi_name_cn: null
+    homepage_url: http://nlp.csai.tsinghua.edu.cn/~ly
+    keywords: []
+    scholar_url: null
+    source_url: https://csrankings.org
+  - pi_name: Hui Wang
+    pi_name_cn: null
+    homepage_url: https://jessiehuiwang.github.io/index.html
+    keywords: []
+    scholar_url: https://scholar.google.com/citations?user=fcLOhBoAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Yong Li
+    pi_name_cn: null
+    homepage_url: http://fi.ee.tsinghua.edu.cn/~liyong
+    keywords:
+    - Recommendation
+    scholar_url: https://scholar.google.com/citations?user=kmgzPeQAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Jia Jia
+    pi_name_cn: null
+    homepage_url: http://hcsi.cs.tsinghua.edu.cn
+    keywords: []
+    scholar_url: null
+    source_url: https://csrankings.org
+  - pi_name: Min Zhang
+    pi_name_cn: null
+    homepage_url: http://www.thuir.cn/group/~mzhang
+    keywords:
+    - Agent
+    - Embodied AI
+    scholar_url: null
+    source_url: https://csrankings.org
+  - pi_name: Fuchun Sun
+    pi_name_cn: null
+    homepage_url: http://www.tsinghua.edu.cn/publish/csen/4623/2010/20101224193039440369874/20101224193039440369874_.html
+    keywords:
+    - Embodied AI
+    scholar_url: https://scholar.google.com/citations?user=DbviELoAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Zhiyuan Liu
+    pi_name_cn: null
+    homepage_url: http://nlp.csai.tsinghua.edu.cn/~lzy
+    keywords:
+    - Multimodal
+    scholar_url: https://scholar.google.com/citations?user=dT0v5u0AAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Yuanyuan Yuan
+    pi_name_cn: null
+    homepage_url: https://yuanyuan-yuan.github.io
+    keywords: []
+    scholar_url: https://scholar.google.com/citations?user=wnhU3KoAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Jianping Wu
+    pi_name_cn: null
+    homepage_url: http://www.cs.tsinghua.edu.cn/publish/csen/4623/2010/20101224194435414856631/20101224194435414856631_.html
+    keywords: []
+    scholar_url: https://scholar.google.com/citations?user=Y-nqSYgAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Jianmin Wang
+    pi_name_cn: null
+    homepage_url: http://www.thss.tsinghua.edu.cn/publish/soften/3131/2010/20101219100058471372347/20101219100058471372347_.html
+    keywords:
+    - Multimodal
+    scholar_url: https://scholar.google.com/citations?user=MiovcboAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Xu Han
+    pi_name_cn: null
+    homepage_url: https://thucsthanxu13.github.io
+    keywords: []
+    scholar_url: https://scholar.google.com/citations?user=rz4rOSMAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Jian Li
+    pi_name_cn: null
+    homepage_url: http://iiis.tsinghua.edu.cn/~jianli
+    keywords:
+    - Model Compression
+    scholar_url: https://scholar.google.com/citations?user=khvIZWkAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Maosong Sun
+    pi_name_cn: null
+    homepage_url: http://www.tsinghua.edu.cn/publish/csen/4623/2010/20101224193416561782037/20101224193416561782037_.html
+    keywords:
+    - Multimodal
+    scholar_url: https://scholar.google.com/citations?user=zIgT0HMAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Li Xiu
+    pi_name_cn: null
+    homepage_url: http://www.cs.tsinghua.edu.cn/publish/csen/4623/2010/20101224001632440223805/20101224001632440223805_.html
+    keywords:
+    - Embodied AI
+    - Multimodal
+    scholar_url: https://scholar.google.com/citations?user=wrKyJYsAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Xiu Li
+    pi_name_cn: null
+    homepage_url: http://www.cs.tsinghua.edu.cn/publish/csen/4623/2010/20101224001632440223805/20101224001632440223805_.html
+    keywords:
+    - Embodied AI
+    - Multimodal
+    scholar_url: https://scholar.google.com/citations?user=wrKyJYsAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Huaping Liu
+    pi_name_cn: null
+    homepage_url: http://eecs.oregonstate.edu/people/liu-huaping
+    keywords:
+    - Data / Evaluation
+    - Embodied AI
+    - Multimodal
+    scholar_url: https://scholar.google.com/citations?user=HXnkIkwAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Ke Xu
+    pi_name_cn: null
+    homepage_url: http://www.cs.tsinghua.edu.cn/publish/csen/4623/2010/20101224195105834581145/20101224195105834581145_.html
+    keywords:
+    - AI Security
+    scholar_url: https://scholar.google.com/citations?user=_XXLtZgAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Xiaoping Zhang
+    pi_name_cn: null
+    homepage_url: http://www.cs.tsinghua.edu.cn/publish/csen/4623/2010/20101225000806223958364/20101225000806223958364_.html
+    keywords:
+    - Model Compression
+    scholar_url: https://scholar.google.com/citations?user=p82_4bgAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Jie Tang
+    pi_name_cn: null
+    homepage_url: http://keg.cs.tsinghua.edu.cn/jietang
+    keywords:
+    - Recommendation
+    scholar_url: https://scholar.google.com/citations?user=n1zDCkQAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Wenwu Zhu
+    pi_name_cn: null
+    homepage_url: http://media.cs.tsinghua.edu.cn/en/zww
+    keywords:
+    - Multimodal
+    scholar_url: https://scholar.google.com/citations?user=7t2jzpgAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Weidong Liu
+    pi_name_cn: null
+    homepage_url: http://www.tsinghua.edu.cn/publish/csen/4623/2010/20101224001537675975573/20101224001537675975573_.html
+    keywords: []
+    scholar_url: https://scholar.google.com/citations?user=c3M0GZwAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Ting Chen
+    pi_name_cn: null
+    homepage_url: https://www.cs.tsinghua.edu.cn/csen/info/1312/4385.htm
+    keywords:
+    - AI for Healthcare
+    scholar_url: https://scholar.google.com/citations?user=yE6LvhMAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Qi Li
+    pi_name_cn: null
+    homepage_url: https://www.cs.tsinghua.edu.cn/publish/csen/4623/2020/20200105201627634466124/20200105201627634466124_.html
+    keywords:
+    - AI Security
+    - LLM Systems
+    scholar_url: null
+    source_url: https://csrankings.org
+  - pi_name: Juanzi Li
+    pi_name_cn: null
+    homepage_url: http://keg.cs.tsinghua.edu.cn/persons/ljz
+    keywords: []
+    scholar_url: null
+    source_url: https://csrankings.org
+  - pi_name: Yue Gao
+    pi_name_cn: null
+    homepage_url: http://www.gaoyue.org
+    keywords:
+    - Data / Evaluation
+    scholar_url: https://scholar.google.com/citations?user=UTDfWocAAAAJ
+    source_url: https://csrankings.org
+- name: Peking University
+  aliases:
+  - 北京大学
+  - PKU
+  labs:
+  - pi_name: Yan Zhang
+    pi_name_cn: null
+    homepage_url: http://www.cis.pku.edu.cn/faculty/system/zhangyan
+    keywords:
+    - AI Security
+    - LLM Systems
+    scholar_url: null
+    source_url: https://csrankings.org
+  - pi_name: Wen Gao
+    pi_name_cn: null
+    homepage_url: http://idm.pku.edu.cn/wgao
+    keywords:
+    - Data / Evaluation
+    - Model Compression
+    scholar_url: https://scholar.google.com/citations?user=b0vWahYAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Wei Zhang
+    pi_name_cn: null
+    homepage_url: http://sei.pku.edu.cn/~zhangw
+    keywords: []
+    scholar_url: null
+    source_url: https://csrankings.org
+  - pi_name: Ding Li
+    pi_name_cn: null
+    homepage_url: https://marapapman.github.io
+    keywords:
+    - AI for Healthcare
+    scholar_url: https://scholar.google.com/citations?user=pOt1374AAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Wei Chen
+    pi_name_cn: null
+    homepage_url: http://eecs.pku.edu.cn/EN/People/Faculty/Detail/?ID=6006
+    keywords: []
+    scholar_url: null
+    source_url: https://csrankings.org
+  - pi_name: Jian Zhang
+    pi_name_cn: null
+    homepage_url: https://jianzhang.tech
+    keywords:
+    - Data / Evaluation
+    scholar_url: https://scholar.google.com/citations?user=7brFI_4AAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Sheng Li
+    pi_name_cn: null
+    homepage_url: http://eecs.pku.edu.cn/EN/People/Faculty/Detail/?ID=6082
+    keywords:
+    - Data / Evaluation
+    - Multimodal
+    scholar_url: null
+    source_url: https://csrankings.org
+  - pi_name: Siwei Ma
+    pi_name_cn: null
+    homepage_url: http://idm.pku.edu.cn/staff/masiwei/masiwei.htm
+    keywords:
+    - Model Compression
+    scholar_url: https://scholar.google.com/citations?user=y3YqlaUAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Siwei Ma
+    pi_name_cn: null
+    homepage_url: https://cs.pku.edu.cn/info/1236/2106.htm
+    keywords:
+    - Model Compression
+    scholar_url: https://scholar.google.com/citations?user=y3YqlaUAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Jie Zhang
+    pi_name_cn: null
+    homepage_url: https://cs.pku.edu.cn/info/1177/3080.htm
+    keywords:
+    - Recommendation
+    scholar_url: https://scholar.google.com/citations?user=I5Zv078AAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Bin Cui
+    pi_name_cn: null
+    homepage_url: http://net.pku.edu.cn/~cuibin
+    keywords:
+    - Recommendation
+    scholar_url: https://scholar.google.com/citations?user=IJAU8KoAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Ying Tan
+    pi_name_cn: null
+    homepage_url: http://www.cis.pku.edu.cn/faculty/system/tanying/TYBiograph.htm
+    keywords: []
+    scholar_url: https://scholar.google.com/citations?user=PjNxSPsAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Tiejun Huang
+    pi_name_cn: null
+    homepage_url: http://idm.pku.edu.cn/tjhuang
+    keywords:
+    - Data / Evaluation
+    scholar_url: https://scholar.google.com/citations?user=knvEK4AAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Ping Wang
+    pi_name_cn: null
+    homepage_url: https://ics.pku.edu.cn/gywm/jsgrzy/1066633d7d214263a734d50eb7454f6f.htm
+    keywords:
+    - AI Security
+    scholar_url: https://scholar.google.com/citations?user=wmNmNNgAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Yonghong Tian
+    pi_name_cn: null
+    homepage_url: https://cs.pku.edu.cn/info/1227/2017.htm
+    keywords:
+    - Data / Evaluation
+    scholar_url: https://scholar.google.com/citations?user=fn6hJx0AAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Yun Liang
+    pi_name_cn: null
+    homepage_url: https://ericlyun.github.io
+    keywords:
+    - Recommendation
+    scholar_url: https://scholar.google.com/citations?user=Ltp8loUAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Tao Xie
+    pi_name_cn: null
+    homepage_url: https://taoxiease.github.io
+    keywords: []
+    scholar_url: https://scholar.google.com/citations?user=DhhH9J4AAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Chao Zhang
+    pi_name_cn: null
+    homepage_url: http://www.cis.pku.edu.cn/faculty/vision/zhangchao/zhangchao.htm
+    keywords:
+    - Data / Evaluation
+    scholar_url: https://scholar.google.com/citations?user=i-vJ_-UAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Zhao Wang
+    pi_name_cn: null
+    homepage_url: http://eecs.pku.edu.cn/EN/People/Faculty/Detail/?ID=6067
+    keywords: []
+    scholar_url: null
+    source_url: https://csrankings.org
+  - pi_name: Zhouchen Lin
+    pi_name_cn: null
+    homepage_url: http://www.cis.pku.edu.cn/faculty/vision/zlin/zlin.htm
+    keywords:
+    - Model Compression
+    scholar_url: https://scholar.google.com/citations?user=TanjFwoAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Jiaying Liu
+    pi_name_cn: null
+    homepage_url: http://www.icst.pku.edu.cn/struct/people/liujiaying.html
+    keywords:
+    - AI Security
+    scholar_url: null
+    source_url: https://csrankings.org
+  - pi_name: Ge Li
+    pi_name_cn: null
+    homepage_url: http://sei.pku.edu.cn/~lige
+    keywords: []
+    scholar_url: null
+    source_url: https://csrankings.org
+  - pi_name: Meng Li
+    pi_name_cn: null
+    homepage_url: https://mengli.me
+    keywords:
+    - AI Security
+    - LLM Systems
+    scholar_url: https://scholar.google.com/citations?user=lvdRkEkAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Hong Mei
+    pi_name_cn: null
+    homepage_url: http://sei.pku.edu.cn/~meih/index_en.html
+    keywords: []
+    scholar_url: https://scholar.google.com/citations?user=b-ZYIwoAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Kuan Cheng
+    pi_name_cn: null
+    homepage_url: https://sites.google.com/site/ckkcdh/home
+    keywords: []
+    scholar_url: https://scholar.google.com/citations?user=cHneZMEAAAAJ
+    source_url: https://csrankings.org
+- name: Fudan University
+  aliases:
+  - 复旦大学
+  - Fudan
+  labs:
+  - pi_name: Lei Zhang
+    pi_name_cn: null
+    homepage_url: https://zxlfd.github.io
+    keywords:
+    - Data / Evaluation
+    scholar_url: https://scholar.google.com/citations?user=PFy8xNcAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Jie Wu
+    pi_name_cn: null
+    homepage_url: http://www.cs.fudan.edu.cn/en/?page_id=2258
+    keywords: []
+    scholar_url: null
+    source_url: https://csrankings.org
+  - pi_name: Wei Wang
+    pi_name_cn: null
+    homepage_url: http://www.cs.fudan.edu.cn/?page_id=2439
+    keywords:
+    - AI for Healthcare
+    scholar_url: null
+    source_url: https://csrankings.org
+  - pi_name: Wei Zhang
+    pi_name_cn: null
+    homepage_url: http://www.cs.fudan.edu.cn/?page_id=2019
+    keywords: []
+    scholar_url: null
+    source_url: https://csrankings.org
+  - pi_name: Wei Li
+    pi_name_cn: null
+    homepage_url: https://dblp.uni-trier.de/pers/hd/l/Li_0012:Wei
+    keywords:
+    - Data / Evaluation
+    scholar_url: null
+    source_url: https://csrankings.org
+  - pi_name: Li Zhang
+    pi_name_cn: null
+    homepage_url: https://lzrobots.github.io
+    keywords:
+    - Data / Evaluation
+    scholar_url: https://scholar.google.com/citations?user=-wOTCE8AAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Fei Wang
+    pi_name_cn: null
+    homepage_url: http://www.cs.fudan.edu.cn/?page_id=1948
+    keywords:
+    - Data / Evaluation
+    - Embodied AI
+    scholar_url: null
+    source_url: https://csrankings.org
+  - pi_name: Jian Wang
+    pi_name_cn: null
+    homepage_url: http://homepage.fudan.edu.cn/jianwang
+    keywords: []
+    scholar_url: https://scholar.google.com/citations?user=5i7YIEgAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Qi Zhang
+    pi_name_cn: null
+    homepage_url: http://nlp.fudan.edu.cn/~qzhang
+    keywords: []
+    scholar_url: https://scholar.google.com/citations?user=XfqR3yYAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Shuigeng Zhou
+    pi_name_cn: null
+    homepage_url: http://admis.fudan.edu.cn/~sgzhou
+    keywords:
+    - AI for Healthcare
+    scholar_url: https://scholar.google.com/citations?user=yAE-Av4AAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Yang Chen
+    pi_name_cn: null
+    homepage_url: https://chenyang03.wordpress.com
+    keywords: []
+    scholar_url: https://scholar.google.com/citations?user=O6tge4UAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Xuanjing Huang
+    pi_name_cn: null
+    homepage_url: http://www.cs.fudan.edu.cn/?page_id=1836
+    keywords:
+    - Multimodal
+    scholar_url: https://scholar.google.com/citations?user=RGsMgZA4H78C
+    source_url: https://csrankings.org
+  - pi_name: Xipeng Qiu
+    pi_name_cn: null
+    homepage_url: http://homepage.fudan.edu.cn/xpqiu
+    keywords:
+    - Multimodal
+    scholar_url: https://scholar.google.com/citations?user=Pq4Yp_kAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Xiangyang Xue
+    pi_name_cn: null
+    homepage_url: http://homepage.fudan.edu.cn/xyxue/zh
+    keywords:
+    - Data / Evaluation
+    - Multimodal
+    scholar_url: https://scholar.google.com/citations?user=DTbhX6oAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Yanwei Fu
+    pi_name_cn: null
+    homepage_url: https://yanweifu.github.io
+    keywords:
+    - Multimodal
+    scholar_url: https://scholar.google.com/citations?user=Vg54TcsAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Yang Xu
+    pi_name_cn: null
+    homepage_url: https://yangxu.info
+    keywords: []
+    scholar_url: https://scholar.google.com/citations?user=CRVN2jwAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Xin Wang
+    pi_name_cn: null
+    homepage_url: http://homepage.fudan.edu.cn/xinw2013
+    keywords:
+    - AI for Healthcare
+    scholar_url: https://scholar.google.com/citations?user=4KcxzhoAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Zenglin Xu
+    pi_name_cn: null
+    homepage_url: https://faculty.fudan.edu.cn/xuzenglin/en/index.htm
+    keywords:
+    - AI Security
+    - LLM Systems
+    scholar_url: https://scholar.google.com/citations?user=gF0H9nEAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Yanghua Xiao
+    pi_name_cn: null
+    homepage_url: http://www.cs.fudan.edu.cn/?page_id=2098
+    keywords:
+    - Multimodal
+    scholar_url: https://scholar.google.com/citations?user=odFW4FoAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Xin Peng
+    pi_name_cn: null
+    homepage_url: http://www.se.fudan.edu.cn/pengxin
+    keywords: []
+    scholar_url: https://scholar.google.com/citations?user=wATYGXEAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Ke Wei
+    pi_name_cn: null
+    homepage_url: http://www.sdspeople.fudan.edu.cn/weike
+    keywords: []
+    scholar_url: https://scholar.google.com/citations?user=9nr1fe8AAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Zhongzhi Zhang
+    pi_name_cn: null
+    homepage_url: http://homepage.fudan.edu.cn/zhangzz
+    keywords: []
+    scholar_url: https://scholar.google.com/citations?user=DrcEuSkAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Zhongyu Wei
+    pi_name_cn: null
+    homepage_url: http://www.sdspeople.fudan.edu.cn/zywei
+    keywords:
+    - Multimodal
+    scholar_url: https://scholar.google.com/citations?user=AjLDxxgAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Zhe Chen
+    pi_name_cn: null
+    homepage_url: https://www.zhe-chen.com
+    keywords:
+    - Embodied AI
+    scholar_url: https://scholar.google.com/citations?user=hhl5-78AAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Min Yang
+    pi_name_cn: null
+    homepage_url: http://www.cs.fudan.edu.cn/?page_id=2665###
+    keywords: []
+    scholar_url: https://scholar.google.com/citations?user=UnKf9FIAAAAJ
+    source_url: https://csrankings.org
+- name: Shanghai Jiao Tong University
+  aliases:
+  - 上海交通大学
+  - SJTU
+  labs:
+  - pi_name: Chen Chen
+    pi_name_cn: null
+    homepage_url: https://jhc.sjtu.edu.cn/~chen-chen
+    keywords:
+    - AI for Finance
+    - Agent
+    scholar_url: null
+    source_url: https://csrankings.org
+  - pi_name: Chen Yuan
+    pi_name_cn: null
+    homepage_url: https://infosec.sjtu.edu.cn/DirectoryDetail.aspx?id=161
+    keywords:
+    - Agent
+    scholar_url: https://scholar.google.com/citations?user=IETqP9EAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Ya Zhang
+    pi_name_cn: null
+    homepage_url: https://mediabrain.sjtu.edu.cn/yazhang
+    keywords:
+    - Data / Evaluation
+    - Multimodal
+    scholar_url: https://scholar.google.com/citations?user=pbjw9sMAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Yang Yang
+    pi_name_cn: null
+    homepage_url: https://yangy09.github.io
+    keywords:
+    - Data / Evaluation
+    - Multimodal
+    scholar_url: https://scholar.google.com/citations?user=-PN_6coAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Pan Hu
+    pi_name_cn: null
+    homepage_url: https://ist.sjtu.edu.cn/membershup
+    keywords:
+    - AI Security
+    scholar_url: https://scholar.google.com/citations?user=6FWVm1AAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Qian Zhang
+    pi_name_cn: null
+    homepage_url: https://www.cs.sjtu.edu.cn/jiaoshiml/zhangqian.html
+    keywords: []
+    scholar_url: https://scholar.google.com/citations?user=dk_-zrIAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Wei Li
+    pi_name_cn: null
+    homepage_url: https://www.cs.sjtu.edu.cn/jiaoshiml/liwei.html
+    keywords:
+    - Data / Evaluation
+    scholar_url: https://scholar.google.com/citations?user=9q7M_4MAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Lei Wang
+    pi_name_cn: null
+    homepage_url: https://www.cs.sjtu.edu.cn/PeopleDetail.aspx?id=324
+    keywords:
+    - Data / Evaluation
+    scholar_url: https://scholar.google.com/citations?user=QvKutBkAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Yu Yu
+    pi_name_cn: null
+    homepage_url: http://yuyu.hk
+    keywords:
+    - AI Security
+    - LLM Systems
+    scholar_url: https://scholar.google.com/citations?user=lpRkCB4AAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Xiaokang Yang
+    pi_name_cn: null
+    homepage_url: https://scholar.google.com/citations?user=yDEavdMAAAAJ
+    keywords:
+    - Data / Evaluation
+    scholar_url: https://scholar.google.com/citations?user=yDEavdMAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Yang Li
+    pi_name_cn: null
+    homepage_url: https://www.cs.sjtu.edu.cn/jiaoshiml/l.html
+    keywords: []
+    scholar_url: https://scholar.google.com/citations?user=msAmwaoAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Minyi Guo
+    pi_name_cn: null
+    homepage_url: https://cs.sjtu.edu.cn/~guo-my
+    keywords: []
+    scholar_url: https://scholar.google.com/citations?user=8R8FO9IAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Xinbing Wang
+    pi_name_cn: null
+    homepage_url: http://www.cs.sjtu.edu.cn/~wang-xb
+    keywords: []
+    scholar_url: https://scholar.google.com/citations?user=CT5yZbwAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Xuemin Lin
+    pi_name_cn: null
+    homepage_url: https://www.acem.sjtu.edu.cn/en/faculty/linxuemin.html
+    keywords: []
+    scholar_url: https://scholar.google.com/citations?user=j6rglkYAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Guoqiang Li
+    pi_name_cn: null
+    homepage_url: http://basics.sjtu.edu.cn/~liguoqiang
+    keywords: []
+    scholar_url: https://scholar.google.com/citations?user=oylxWusAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Qiang Xu
+    pi_name_cn: null
+    homepage_url: https://www.cs.sjtu.edu.cn/jiaoshiml/xuqiang.html
+    keywords:
+    - Recommendation
+    scholar_url: https://scholar.google.com/citations?user=rZMWCjIAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Lizhuang Ma
+    pi_name_cn: null
+    homepage_url: https://dmcv.sjtu.edu.cn/people
+    keywords: []
+    scholar_url: https://scholar.google.com/citations?user=yd58y_0AAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Dong Wang
+    pi_name_cn: null
+    homepage_url: http://www.se.sjtu.edu.cn/teacher/teacherdetail.aspx?id=19
+    keywords:
+    - Data / Evaluation
+    - Multimodal
+    scholar_url: https://scholar.google.com/citations?user=OBVW2YgAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Jian Li
+    pi_name_cn: null
+    homepage_url: https://sdic.sjtu.edu.cn/index.php/jian-li
+    keywords:
+    - AI for Education
+    - AI for Healthcare
+    scholar_url: null
+    source_url: https://csrankings.org
+  - pi_name: Jin-Jin Li
+    pi_name_cn: null
+    homepage_url: https://dmne.sjtu.edu.cn/dmne/faculty/lijinjin
+    keywords:
+    - AI Security
+    - LLM Systems
+    scholar_url: null
+    source_url: https://csrankings.org
+  - pi_name: Weiwen Liu
+    pi_name_cn: null
+    homepage_url: https://www.cs.sjtu.edu.cn/jiaoshiml/liuweiwen.html
+    keywords: []
+    scholar_url: https://scholar.google.com/citations?user=C7UzRGgAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Han Yu
+    pi_name_cn: null
+    homepage_url: https://www.cs.sjtu.edu.cn/jiaoshiml/yuhan.html
+    keywords:
+    - AI Security
+    - LLM Systems
+    - Recommendation
+    scholar_url: https://scholar.google.com/citations?user=KgSRuusAAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Gang Wu
+    pi_name_cn: null
+    homepage_url: http://www.se.sjtu.edu.cn/teacher/teacherdetail.aspx?id=18
+    keywords: []
+    scholar_url: null
+    source_url: https://csrankings.org
+  - pi_name: Yong Yu
+    pi_name_cn: null
+    homepage_url: https://apex.sjtu.edu.cn/members/yyu
+    keywords:
+    - Recommendation
+    scholar_url: https://scholar.google.com/citations?user=-84M1m0AAAAJ
+    source_url: https://csrankings.org
+  - pi_name: Yue Gao
+    pi_name_cn: null
+    homepage_url: https://gaoyue.sjtu.edu.cn
+    keywords:
+    - Data / Evaluation
+    scholar_url: https://scholar.google.com/citations?user=jlweMD8AAAAJ
+    source_url: https://csrankings.org

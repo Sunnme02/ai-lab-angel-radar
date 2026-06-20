@@ -12,11 +12,13 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default=None)
     ap.add_argument("--limit-labs", type=int, default=None, help="只跑前 N 个 lab(调试)")
+    ap.add_argument("--seeds", nargs="+", default=None,
+                    help="seed 文件路径(可多个,合并;默认手写+csrankings)")
     a = ap.parse_args()
 
     cfg = Config(a.config)
     ctx = Context(cfg)
-    seeds = cfg.load_seeds()
+    seeds = cfg.load_seeds_merged(a.seeds)
 
     labs = []
     for school in seeds["schools"]:

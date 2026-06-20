@@ -74,6 +74,7 @@ def process_lab(ctx: Context, school: str, lab_seed: dict):
         pi.is_pi = True
         pi.role = "PI"
         pi.homepage_url = pi.homepage_url or lab_seed.get("homepage_url")
+        pi.google_scholar_url = pi.google_scholar_url or lab_seed.get("scholar_url")
         sess.flush()
         _add_rel(db, sess, "person", pi.id, "lab", lab_id, "PI_OF_LAB")
 
