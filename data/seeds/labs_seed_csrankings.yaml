@@ -11,6 +11,7 @@ schools:
     keywords: []
     scholar_url: null
     source_url: https://csrankings.org
+    orcid: 0000-0002-3087-242X
   - pi_name: Hui Wang
     pi_name_cn: null
     homepage_url: https://jessiehuiwang.github.io/index.html
@@ -24,6 +25,7 @@ schools:
     - Recommendation
     scholar_url: https://scholar.google.com/citations?user=kmgzPeQAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0003-0811-462X
   - pi_name: Jia Jia
     pi_name_cn: null
     homepage_url: http://hcsi.cs.tsinghua.edu.cn
@@ -38,6 +40,7 @@ schools:
     - Embodied AI
     scholar_url: null
     source_url: https://csrankings.org
+    orcid: 0000-0003-3158-1920
   - pi_name: Fuchun Sun
     pi_name_cn: null
     homepage_url: http://www.tsinghua.edu.cn/publish/csen/4623/2010/20101224193039440369874/20101224193039440369874_.html
@@ -45,6 +48,7 @@ schools:
     - Embodied AI
     scholar_url: https://scholar.google.com/citations?user=DbviELoAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0003-3546-6305
   - pi_name: Zhiyuan Liu
     pi_name_cn: null
     homepage_url: http://nlp.csai.tsinghua.edu.cn/~lzy
@@ -52,18 +56,21 @@ schools:
     - Multimodal
     scholar_url: https://scholar.google.com/citations?user=dT0v5u0AAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0002-7709-2543
   - pi_name: Yuanyuan Yuan
     pi_name_cn: null
     homepage_url: https://yuanyuan-yuan.github.io
     keywords: []
     scholar_url: https://scholar.google.com/citations?user=wnhU3KoAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0002-3053-8923
   - pi_name: Jianping Wu
     pi_name_cn: null
     homepage_url: http://www.cs.tsinghua.edu.cn/publish/csen/4623/2010/20101224194435414856631/20101224194435414856631_.html
     keywords: []
     scholar_url: https://scholar.google.com/citations?user=Y-nqSYgAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0002-9363-3848
   - pi_name: Jianmin Wang
     pi_name_cn: null
     homepage_url: http://www.thss.tsinghua.edu.cn/publish/soften/3131/2010/20101219100058471372347/20101219100058471372347_.html
@@ -71,12 +78,14 @@ schools:
     - Multimodal
     scholar_url: https://scholar.google.com/citations?user=MiovcboAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0001-6841-7943
   - pi_name: Xu Han
     pi_name_cn: null
     homepage_url: https://thucsthanxu13.github.io
     keywords: []
     scholar_url: https://scholar.google.com/citations?user=rz4rOSMAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0002-4726-7621
   - pi_name: Jian Li
     pi_name_cn: null
     homepage_url: http://iiis.tsinghua.edu.cn/~jianli
@@ -84,6 +93,7 @@ schools:
     - Model Compression
     scholar_url: https://scholar.google.com/citations?user=khvIZWkAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0003-4650-3925
   - pi_name: Maosong Sun
     pi_name_cn: null
     homepage_url: http://www.tsinghua.edu.cn/publish/csen/4623/2010/20101224193416561782037/20101224193416561782037_.html
@@ -91,6 +101,7 @@ schools:
     - Multimodal
     scholar_url: https://scholar.google.com/citations?user=zIgT0HMAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0002-6011-6115
   - pi_name: Li Xiu
     pi_name_cn: null
     homepage_url: http://www.cs.tsinghua.edu.cn/publish/csen/4623/2010/20101224001632440223805/20101224001632440223805_.html
@@ -107,6 +118,7 @@ schools:
     - Multimodal
     scholar_url: https://scholar.google.com/citations?user=wrKyJYsAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0003-0403-1923
   - pi_name: Huaping Liu
     pi_name_cn: null
     homepage_url: http://eecs.oregonstate.edu/people/liu-huaping
@@ -123,6 +135,7 @@ schools:
     - AI Security
     scholar_url: https://scholar.google.com/citations?user=_XXLtZgAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0003-2587-8517
   - pi_name: Xiaoping Zhang
     pi_name_cn: null
     homepage_url: http://www.cs.tsinghua.edu.cn/publish/csen/4623/2010/20101225000806223958364/20101225000806223958364_.html
@@ -130,6 +143,7 @@ schools:
     - Model Compression
     scholar_url: https://scholar.google.com/citations?user=p82_4bgAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0002-2141-1250
   - pi_name: Jie Tang
     pi_name_cn: null
     homepage_url: http://keg.cs.tsinghua.edu.cn/jietang
@@ -137,6 +151,7 @@ schools:
     - Recommendation
     scholar_url: https://scholar.google.com/citations?user=n1zDCkQAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0003-3487-4593
   - pi_name: Wenwu Zhu
     pi_name_cn: null
     homepage_url: http://media.cs.tsinghua.edu.cn/en/zww
@@ -144,6 +159,7 @@ schools:
     - Multimodal
     scholar_url: https://scholar.google.com/citations?user=7t2jzpgAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0003-2236-9290
   - pi_name: Weidong Liu
     pi_name_cn: null
     homepage_url: http://www.tsinghua.edu.cn/publish/csen/4623/2010/20101224001537675975573/20101224001537675975573_.html
@@ -165,12 +181,14 @@ schools:
     - LLM Systems
     scholar_url: null
     source_url: https://csrankings.org
+    orcid: 0000-0001-8776-8730
   - pi_name: Juanzi Li
     pi_name_cn: null
     homepage_url: http://keg.cs.tsinghua.edu.cn/persons/ljz
     keywords: []
     scholar_url: null
     source_url: https://csrankings.org
+    orcid: 0000-0002-6244-0664
   - pi_name: Yue Gao
     pi_name_cn: null
     homepage_url: http://www.gaoyue.org
@@ -178,6 +196,7 @@ schools:
     - Data / Evaluation
     scholar_url: https://scholar.google.com/citations?user=UTDfWocAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0002-4971-590X
 - name: Peking University
   aliases:
   - 北京大学
@@ -191,6 +210,7 @@ schools:
     - LLM Systems
     scholar_url: null
     source_url: https://csrankings.org
+    orcid: 0000-0002-5336-7100
   - pi_name: Wen Gao
     pi_name_cn: null
     homepage_url: http://idm.pku.edu.cn/wgao
@@ -199,12 +219,14 @@ schools:
     - Model Compression
     scholar_url: https://scholar.google.com/citations?user=b0vWahYAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0001-8894-1806
   - pi_name: Wei Zhang
     pi_name_cn: null
     homepage_url: http://sei.pku.edu.cn/~zhangw
     keywords: []
     scholar_url: null
     source_url: https://csrankings.org
+    orcid: 0000-0003-1543-0196
   - pi_name: Ding Li
     pi_name_cn: null
     homepage_url: https://marapapman.github.io
@@ -212,6 +234,7 @@ schools:
     - AI for Healthcare
     scholar_url: https://scholar.google.com/citations?user=pOt1374AAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0001-7558-9137
   - pi_name: Wei Chen
     pi_name_cn: null
     homepage_url: http://eecs.pku.edu.cn/EN/People/Faculty/Detail/?ID=6006
@@ -240,6 +263,7 @@ schools:
     - Model Compression
     scholar_url: https://scholar.google.com/citations?user=y3YqlaUAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0002-2731-5403
   - pi_name: Siwei Ma
     pi_name_cn: null
     homepage_url: https://cs.pku.edu.cn/info/1236/2106.htm
@@ -247,6 +271,7 @@ schools:
     - Model Compression
     scholar_url: https://scholar.google.com/citations?user=y3YqlaUAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0002-2731-5403
   - pi_name: Jie Zhang
     pi_name_cn: null
     homepage_url: https://cs.pku.edu.cn/info/1177/3080.htm
@@ -254,6 +279,7 @@ schools:
     - Recommendation
     scholar_url: https://scholar.google.com/citations?user=I5Zv078AAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0002-6299-4683
   - pi_name: Bin Cui
     pi_name_cn: null
     homepage_url: http://net.pku.edu.cn/~cuibin
@@ -261,12 +287,14 @@ schools:
     - Recommendation
     scholar_url: https://scholar.google.com/citations?user=IJAU8KoAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0003-1681-4677
   - pi_name: Ying Tan
     pi_name_cn: null
     homepage_url: http://www.cis.pku.edu.cn/faculty/system/tanying/TYBiograph.htm
     keywords: []
     scholar_url: https://scholar.google.com/citations?user=PjNxSPsAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0001-8243-4731
   - pi_name: Tiejun Huang
     pi_name_cn: null
     homepage_url: http://idm.pku.edu.cn/tjhuang
@@ -274,6 +302,7 @@ schools:
     - Data / Evaluation
     scholar_url: https://scholar.google.com/citations?user=knvEK4AAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0002-4234-6099
   - pi_name: Ping Wang
     pi_name_cn: null
     homepage_url: https://ics.pku.edu.cn/gywm/jsgrzy/1066633d7d214263a734d50eb7454f6f.htm
@@ -281,6 +310,7 @@ schools:
     - AI Security
     scholar_url: https://scholar.google.com/citations?user=wmNmNNgAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0002-8854-2079
   - pi_name: Yonghong Tian
     pi_name_cn: null
     homepage_url: https://cs.pku.edu.cn/info/1227/2017.htm
@@ -288,6 +318,7 @@ schools:
     - Data / Evaluation
     scholar_url: https://scholar.google.com/citations?user=fn6hJx0AAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0002-2978-5935
   - pi_name: Yun Liang
     pi_name_cn: null
     homepage_url: https://ericlyun.github.io
@@ -295,12 +326,14 @@ schools:
     - Recommendation
     scholar_url: https://scholar.google.com/citations?user=Ltp8loUAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0002-9076-7998
   - pi_name: Tao Xie
     pi_name_cn: null
     homepage_url: https://taoxiease.github.io
     keywords: []
     scholar_url: https://scholar.google.com/citations?user=DhhH9J4AAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0002-6731-216X
   - pi_name: Chao Zhang
     pi_name_cn: null
     homepage_url: http://www.cis.pku.edu.cn/faculty/vision/zhangchao/zhangchao.htm
@@ -321,6 +354,7 @@ schools:
     - Model Compression
     scholar_url: https://scholar.google.com/citations?user=TanjFwoAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0003-1493-7569
   - pi_name: Jiaying Liu
     pi_name_cn: null
     homepage_url: http://www.icst.pku.edu.cn/struct/people/liujiaying.html
@@ -328,12 +362,14 @@ schools:
     - AI Security
     scholar_url: null
     source_url: https://csrankings.org
+    orcid: 0000-0002-0468-9576
   - pi_name: Ge Li
     pi_name_cn: null
     homepage_url: http://sei.pku.edu.cn/~lige
     keywords: []
     scholar_url: null
     source_url: https://csrankings.org
+    orcid: 0000-0002-5828-0186
   - pi_name: Meng Li
     pi_name_cn: null
     homepage_url: https://mengli.me
@@ -342,12 +378,14 @@ schools:
     - LLM Systems
     scholar_url: https://scholar.google.com/citations?user=lvdRkEkAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0002-7212-2264
   - pi_name: Hong Mei
     pi_name_cn: null
     homepage_url: http://sei.pku.edu.cn/~meih/index_en.html
     keywords: []
     scholar_url: https://scholar.google.com/citations?user=b-ZYIwoAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0003-2380-3976
   - pi_name: Kuan Cheng
     pi_name_cn: null
     homepage_url: https://sites.google.com/site/ckkcdh/home
@@ -366,12 +404,14 @@ schools:
     - Data / Evaluation
     scholar_url: https://scholar.google.com/citations?user=PFy8xNcAAAAJ
     source_url: https://csrankings.org
+    orcid: 0009-0004-3295-1991
   - pi_name: Jie Wu
     pi_name_cn: null
     homepage_url: http://www.cs.fudan.edu.cn/en/?page_id=2258
     keywords: []
     scholar_url: null
     source_url: https://csrankings.org
+    orcid: 0000-0003-0404-0707
   - pi_name: Wei Wang
     pi_name_cn: null
     homepage_url: http://www.cs.fudan.edu.cn/?page_id=2439
@@ -379,6 +419,7 @@ schools:
     - AI for Healthcare
     scholar_url: null
     source_url: https://csrankings.org
+    orcid: 0000-0003-0264-788X
   - pi_name: Wei Zhang
     pi_name_cn: null
     homepage_url: http://www.cs.fudan.edu.cn/?page_id=2019
@@ -407,12 +448,14 @@ schools:
     - Embodied AI
     scholar_url: null
     source_url: https://csrankings.org
+    orcid: 0000-0001-5890-0448
   - pi_name: Jian Wang
     pi_name_cn: null
     homepage_url: http://homepage.fudan.edu.cn/jianwang
     keywords: []
     scholar_url: https://scholar.google.com/citations?user=5i7YIEgAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0002-5421-5678
   - pi_name: Qi Zhang
     pi_name_cn: null
     homepage_url: http://nlp.fudan.edu.cn/~qzhang
@@ -426,12 +469,14 @@ schools:
     - AI for Healthcare
     scholar_url: https://scholar.google.com/citations?user=yAE-Av4AAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0002-1949-2768
   - pi_name: Yang Chen
     pi_name_cn: null
     homepage_url: https://chenyang03.wordpress.com
     keywords: []
     scholar_url: https://scholar.google.com/citations?user=O6tge4UAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0003-4749-3060
   - pi_name: Xuanjing Huang
     pi_name_cn: null
     homepage_url: http://www.cs.fudan.edu.cn/?page_id=1836
@@ -446,6 +491,7 @@ schools:
     - Multimodal
     scholar_url: https://scholar.google.com/citations?user=Pq4Yp_kAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0001-7163-5247
   - pi_name: Xiangyang Xue
     pi_name_cn: null
     homepage_url: http://homepage.fudan.edu.cn/xyxue/zh
@@ -454,6 +500,7 @@ schools:
     - Multimodal
     scholar_url: https://scholar.google.com/citations?user=DTbhX6oAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0002-4897-9209
   - pi_name: Yanwei Fu
     pi_name_cn: null
     homepage_url: https://yanweifu.github.io
@@ -461,12 +508,14 @@ schools:
     - Multimodal
     scholar_url: https://scholar.google.com/citations?user=Vg54TcsAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0002-6595-6893
   - pi_name: Yang Xu
     pi_name_cn: null
     homepage_url: https://yangxu.info
     keywords: []
     scholar_url: https://scholar.google.com/citations?user=CRVN2jwAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0002-0958-8547
   - pi_name: Xin Wang
     pi_name_cn: null
     homepage_url: http://homepage.fudan.edu.cn/xinw2013
@@ -474,6 +523,7 @@ schools:
     - AI for Healthcare
     scholar_url: https://scholar.google.com/citations?user=4KcxzhoAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0002-9405-4485
   - pi_name: Zenglin Xu
     pi_name_cn: null
     homepage_url: https://faculty.fudan.edu.cn/xuzenglin/en/index.htm
@@ -482,6 +532,7 @@ schools:
     - LLM Systems
     scholar_url: https://scholar.google.com/citations?user=gF0H9nEAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0001-5550-6461
   - pi_name: Yanghua Xiao
     pi_name_cn: null
     homepage_url: http://www.cs.fudan.edu.cn/?page_id=2098
@@ -489,12 +540,14 @@ schools:
     - Multimodal
     scholar_url: https://scholar.google.com/citations?user=odFW4FoAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0001-8403-9591
   - pi_name: Xin Peng
     pi_name_cn: null
     homepage_url: http://www.se.fudan.edu.cn/pengxin
     keywords: []
     scholar_url: https://scholar.google.com/citations?user=wATYGXEAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0003-3376-2581
   - pi_name: Ke Wei
     pi_name_cn: null
     homepage_url: http://www.sdspeople.fudan.edu.cn/weike
@@ -507,6 +560,7 @@ schools:
     keywords: []
     scholar_url: https://scholar.google.com/citations?user=DrcEuSkAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0003-1260-2079
   - pi_name: Zhongyu Wei
     pi_name_cn: null
     homepage_url: http://www.sdspeople.fudan.edu.cn/zywei
@@ -514,6 +568,7 @@ schools:
     - Multimodal
     scholar_url: https://scholar.google.com/citations?user=AjLDxxgAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0003-3789-8507
   - pi_name: Zhe Chen
     pi_name_cn: null
     homepage_url: https://www.zhe-chen.com
@@ -521,12 +576,14 @@ schools:
     - Embodied AI
     scholar_url: https://scholar.google.com/citations?user=hhl5-78AAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0002-3215-2696
   - pi_name: Min Yang
     pi_name_cn: null
     homepage_url: http://www.cs.fudan.edu.cn/?page_id=2665###
     keywords: []
     scholar_url: https://scholar.google.com/citations?user=UnKf9FIAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0001-9714-5545
 - name: Shanghai Jiao Tong University
   aliases:
   - 上海交通大学
@@ -540,6 +597,7 @@ schools:
     - Agent
     scholar_url: null
     source_url: https://csrankings.org
+    orcid: 0000-0001-9480-5632
   - pi_name: Chen Yuan
     pi_name_cn: null
     homepage_url: https://infosec.sjtu.edu.cn/DirectoryDetail.aspx?id=161
@@ -555,6 +613,7 @@ schools:
     - Multimodal
     scholar_url: https://scholar.google.com/citations?user=pbjw9sMAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0002-5390-9053
   - pi_name: Yang Yang
     pi_name_cn: null
     homepage_url: https://yangy09.github.io
@@ -563,6 +622,7 @@ schools:
     - Multimodal
     scholar_url: https://scholar.google.com/citations?user=-PN_6coAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0001-5720-773X
   - pi_name: Pan Hu
     pi_name_cn: null
     homepage_url: https://ist.sjtu.edu.cn/membershup
@@ -570,12 +630,14 @@ schools:
     - AI Security
     scholar_url: https://scholar.google.com/citations?user=6FWVm1AAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0003-1701-9640
   - pi_name: Qian Zhang
     pi_name_cn: null
     homepage_url: https://www.cs.sjtu.edu.cn/jiaoshiml/zhangqian.html
     keywords: []
     scholar_url: https://scholar.google.com/citations?user=dk_-zrIAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0001-7708-8694
   - pi_name: Wei Li
     pi_name_cn: null
     homepage_url: https://www.cs.sjtu.edu.cn/jiaoshiml/liwei.html
@@ -590,6 +652,7 @@ schools:
     - Data / Evaluation
     scholar_url: https://scholar.google.com/citations?user=QvKutBkAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0002-2749-0930
   - pi_name: Yu Yu
     pi_name_cn: null
     homepage_url: http://yuyu.hk
@@ -598,6 +661,7 @@ schools:
     - LLM Systems
     scholar_url: https://scholar.google.com/citations?user=lpRkCB4AAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0002-9278-4521
   - pi_name: Xiaokang Yang
     pi_name_cn: null
     homepage_url: https://scholar.google.com/citations?user=yDEavdMAAAAJ
@@ -605,6 +669,7 @@ schools:
     - Data / Evaluation
     scholar_url: https://scholar.google.com/citations?user=yDEavdMAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0003-4029-3322
   - pi_name: Yang Li
     pi_name_cn: null
     homepage_url: https://www.cs.sjtu.edu.cn/jiaoshiml/l.html
@@ -617,24 +682,28 @@ schools:
     keywords: []
     scholar_url: https://scholar.google.com/citations?user=8R8FO9IAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0003-0034-2302
   - pi_name: Xinbing Wang
     pi_name_cn: null
     homepage_url: http://www.cs.sjtu.edu.cn/~wang-xb
     keywords: []
     scholar_url: https://scholar.google.com/citations?user=CT5yZbwAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0002-0357-8356
   - pi_name: Xuemin Lin
     pi_name_cn: null
     homepage_url: https://www.acem.sjtu.edu.cn/en/faculty/linxuemin.html
     keywords: []
     scholar_url: https://scholar.google.com/citations?user=j6rglkYAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0003-2396-7225
   - pi_name: Guoqiang Li
     pi_name_cn: null
     homepage_url: http://basics.sjtu.edu.cn/~liguoqiang
     keywords: []
     scholar_url: https://scholar.google.com/citations?user=oylxWusAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0001-9005-7112
   - pi_name: Qiang Xu
     pi_name_cn: null
     homepage_url: https://www.cs.sjtu.edu.cn/jiaoshiml/xuqiang.html
@@ -648,6 +717,7 @@ schools:
     keywords: []
     scholar_url: https://scholar.google.com/citations?user=yd58y_0AAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0003-1653-4341
   - pi_name: Dong Wang
     pi_name_cn: null
     homepage_url: http://www.se.sjtu.edu.cn/teacher/teacherdetail.aspx?id=19
@@ -656,6 +726,7 @@ schools:
     - Multimodal
     scholar_url: https://scholar.google.com/citations?user=OBVW2YgAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0001-8444-1636
   - pi_name: Jian Li
     pi_name_cn: null
     homepage_url: https://sdic.sjtu.edu.cn/index.php/jian-li
@@ -664,6 +735,7 @@ schools:
     - AI for Healthcare
     scholar_url: null
     source_url: https://csrankings.org
+    orcid: 0000-0003-0894-0892
   - pi_name: Jin-Jin Li
     pi_name_cn: null
     homepage_url: https://dmne.sjtu.edu.cn/dmne/faculty/lijinjin
@@ -672,12 +744,14 @@ schools:
     - LLM Systems
     scholar_url: null
     source_url: https://csrankings.org
+    orcid: 0000-0003-1660-387X
   - pi_name: Weiwen Liu
     pi_name_cn: null
     homepage_url: https://www.cs.sjtu.edu.cn/jiaoshiml/liuweiwen.html
     keywords: []
     scholar_url: https://scholar.google.com/citations?user=C7UzRGgAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0002-9148-3997
   - pi_name: Han Yu
     pi_name_cn: null
     homepage_url: https://www.cs.sjtu.edu.cn/jiaoshiml/yuhan.html
@@ -687,6 +761,7 @@ schools:
     - Recommendation
     scholar_url: https://scholar.google.com/citations?user=KgSRuusAAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0001-8070-1293
   - pi_name: Gang Wu
     pi_name_cn: null
     homepage_url: http://www.se.sjtu.edu.cn/teacher/teacherdetail.aspx?id=18
@@ -700,6 +775,7 @@ schools:
     - Recommendation
     scholar_url: https://scholar.google.com/citations?user=-84M1m0AAAAJ
     source_url: https://csrankings.org
+    orcid: 0000-0003-0281-8271
   - pi_name: Yue Gao
     pi_name_cn: null
     homepage_url: https://gaoyue.sjtu.edu.cn

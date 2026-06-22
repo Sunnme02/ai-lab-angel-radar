@@ -80,13 +80,13 @@ def main():
     oa_cache_path = os.path.join(cache_dir, "oa_classify_cache.json")
     oa_cache = {} if a.refresh_cache else _load_oa_cache(oa_cache_path)
 
-    def classify(name, school):
+    def classify(name, school, orcid=None):
         if a.no_ai_filter:
             return {"is_cs": True, "top_topics": [], "works_count": 0}
-        key = f"{normalize_name(name)}|{school}"
+        key = f"{normalize_name(name)}|{school}|{orcid or ''}"
         if key in oa_cache:
             return oa_cache[key]
-        res = oa.classify_author(name, school)
+        res = oa.classify_author(name, school, orcid=orcid)  # 有 ORCID 则精确直查,零串人
         oa_cache[key] = res        # 可能为 None,也缓存(避免重复查)
         return res
 
@@ -94,7 +94,7 @@ def main():
     for school, entries in by_school.items():
         kept = []
         for e in entries:
-            res = classify(e["name"], school)
+            res = classify(e["name"], school, e.get("orcid"))
             if not res or not res.get("is_cs"):
                 continue
             kept.append((e, res))
@@ -113,6 +113,7 @@ def main():
                 "homepage_url": e.get("homepage"),
                 "keywords": sorted(set(kws)),
                 "scholar_url": scholar_url,
+                "orcid": e.get("orcid"),     # ORCID 锚点:pipeline 用它精确锁定作者
                 "source_url": "https://csrankings.org",
             })
         schools_out.append({"name": school, "aliases": targets[school], "labs": labs})

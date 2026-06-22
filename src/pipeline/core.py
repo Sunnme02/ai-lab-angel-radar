@@ -62,9 +62,9 @@ def process_lab(ctx: Context, school: str, lab_seed: dict):
         lab_id = lab.id
         sess.commit()
 
-    # 2.1 取论文
+    # 2.1 取论文(有 ORCID 则精确锚定作者,避免常见名串人)
     author_id, papers = ctx.oa.collect_lab(pi_name, school, cfg.year_from, cfg.year_to,
-                                            cfg.max_papers_per_lab)
+                                            cfg.max_papers_per_lab, orcid=lab_seed.get("orcid"))
 
     with db.session() as sess:
         lab = sess.get(Lab, lab_id)

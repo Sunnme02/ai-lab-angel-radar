@@ -35,11 +35,28 @@ class OpenAlexCollector:
         p.update(kw)
         return p
 
-    def find_author(self, pi_name: str, affiliation: str = ""):
-        """按姓名搜作者,强约束姓名相似度 + 计算机领域加权 + 机构匹配,避免高产同名者误命中。
+    def author_by_orcid(self, orcid: str):
+        """用 ORCID 精确直查作者(全球唯一,零串人)。返回 author json 或 None。"""
+        if not orcid:
+            return None
+        oc = orcid.replace("https://orcid.org/", "").strip()
+        try:
+            return get_json(f"{BASE}/authors/https://orcid.org/{oc}", key="openalex", per_sec=5,
+                            params=self._params(
+                                select="id,display_name,works_count,last_known_institutions,topics"))
+        except Exception as e:  # noqa: BLE001
+            log.debug(f"OpenAlex ORCID 查询失败 {orcid}: {e}")
+            return None
+
+    def find_author(self, pi_name: str, affiliation: str = "", orcid: str = None):
+        """定位作者:有 ORCID 则精确直查(零串人);否则按姓名搜(强约束 + 领域/机构加权)。
 
         返回 (author_id, display_name)。
         """
+        if orcid:
+            a = self.author_by_orcid(orcid)
+            if a:
+                return a["id"], a.get("display_name")
         try:
             d = get_json(f"{BASE}/authors", key="openalex", per_sec=5,
                          params=self._params(
@@ -69,12 +86,22 @@ class OpenAlexCollector:
             return best["id"], best.get("display_name")
         return None, None
 
-    def classify_author(self, pi_name: str, affiliation: str = ""):
+    def classify_author(self, pi_name: str, affiliation: str = "", orcid: str = None):
         """同 find_author 选出 best,但额外返回领域判定。
 
+        有 ORCID 则精确直查(零串人);否则按姓名搜。
         返回 {author_id, display_name, is_cs, top_topics, works_count} 或 None。
         供师资名册"只留 AI 老师"过滤用。
         """
+        if orcid:
+            a = self.author_by_orcid(orcid)
+            if a:
+                return {
+                    "author_id": a["id"], "display_name": a.get("display_name"),
+                    "is_cs": _is_cs_author(a),
+                    "top_topics": [t.get("display_name") for t in (a.get("topics") or [])[:5]],
+                    "works_count": a.get("works_count", 0),
+                }
         try:
             d = get_json(f"{BASE}/authors", key="openalex", per_sec=5,
                          params=self._params(
@@ -162,8 +189,8 @@ class OpenAlexCollector:
             "concepts": kws,
         }
 
-    def collect_lab(self, pi_name, affiliation, year_from, year_to, max_papers=60):
-        aid, disp = self.find_author(pi_name, affiliation)
+    def collect_lab(self, pi_name, affiliation, year_from, year_to, max_papers=60, orcid=None):
+        aid, disp = self.find_author(pi_name, affiliation, orcid=orcid)
         if not aid:
             log.warning(f"未在 OpenAlex 找到 {pi_name}@{affiliation}")
             return aid, []
