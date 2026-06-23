@@ -14,10 +14,15 @@ def main():
     ap.add_argument("--limit-labs", type=int, default=None, help="只跑前 N 个 lab(调试)")
     ap.add_argument("--seeds", nargs="+", default=None,
                     help="seed 文件路径(可多个,合并;默认手写+csrankings)")
+    ap.add_argument("--no-github", action="store_true",
+                    help="跳过 GitHub 采集(只跑学术层,快很多;工程信号可二次补)")
     a = ap.parse_args()
 
     cfg = Config(a.config)
     ctx = Context(cfg)
+    if a.no_github:
+        ctx.gh.enabled = False
+        log.info("--no-github:本轮跳过 GitHub 采集(学术层先行)")
     seeds = cfg.load_seeds_merged(a.seeds)
 
     labs = []
