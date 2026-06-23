@@ -31,6 +31,7 @@ paths:
   seeds: data/seeds/labs_seed.yaml
   seeds_extra: data/seeds/labs_seed_csrankings.yaml
   csrankings_cache: data/raw/csrankings
+  openalex_cache: data/raw/openalex_cache
   exports: data/exports
 
 # 网络礼貌

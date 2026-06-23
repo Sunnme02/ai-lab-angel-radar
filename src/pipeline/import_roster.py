@@ -76,7 +76,7 @@ def main():
         log.info(f"  {n}: CSRankings 命中 {len(lst)} 人")
 
     # 2) OpenAlex AI 过滤(带缓存)
-    oa = OpenAlexCollector(email=cfg.openalex_email)
+    oa = OpenAlexCollector(email=cfg.openalex_email, cache_dir=cfg.openalex_cache_dir)
     oa_cache_path = os.path.join(cache_dir, "oa_classify_cache.json")
     oa_cache = {} if a.refresh_cache else _load_oa_cache(oa_cache_path)
 

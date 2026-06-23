@@ -35,7 +35,8 @@ class Context:
     def __init__(self, config: Config):
         self.cfg = config
         self.db = DB(config.db_path)
-        self.oa = OpenAlexCollector(email=config.openalex_email)
+        self.oa = OpenAlexCollector(email=config.openalex_email,
+                                    cache_dir=config.openalex_cache_dir)
         self.s2 = SemanticScholarCollector(api_key=config.s2_key)
         self.gh = GitHubCollector(token=config.github_token)
 

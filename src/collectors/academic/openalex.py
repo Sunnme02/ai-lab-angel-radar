@@ -1,7 +1,11 @@
 """OpenAlex 采集器:按 PI 找作者 → 取近三年论文 → 抽作者/机构/引用/摘要。
 
-主力学术源。免费、有 polite pool(带 mailto)。
+主力学术源。免费、有 polite pool(带 mailto)。所有查询落盘缓存,避免重复砸 API 触发限流。
 """
+import hashlib
+import json
+import os
+
 from rapidfuzz import fuzz
 
 from ...utils.logging import get_logger
@@ -27,8 +31,30 @@ def _is_cs_author(author_json):
 
 
 class OpenAlexCollector:
-    def __init__(self, email: str = ""):
+    def __init__(self, email: str = "", cache_dir: str = None):
         self.email = email
+        self.cache_dir = cache_dir
+        if cache_dir:
+            os.makedirs(cache_dir, exist_ok=True)
+
+    def _cache_get(self, key):
+        if not self.cache_dir:
+            return None
+        fp = os.path.join(self.cache_dir, hashlib.md5(key.encode()).hexdigest() + ".json")
+        if os.path.exists(fp):
+            try:
+                with open(fp, encoding="utf-8") as f:
+                    return json.load(f)
+            except Exception:  # noqa: BLE001
+                return None
+        return None
+
+    def _cache_put(self, key, val):
+        if not self.cache_dir:
+            return
+        fp = os.path.join(self.cache_dir, hashlib.md5(key.encode()).hexdigest() + ".json")
+        with open(fp, "w", encoding="utf-8") as f:
+            json.dump(val, f, ensure_ascii=False)
 
     def _params(self, **kw):
         p = {"mailto": self.email} if self.email else {}
@@ -36,14 +62,20 @@ class OpenAlexCollector:
         return p
 
     def author_by_orcid(self, orcid: str):
-        """用 ORCID 精确直查作者(全球唯一,零串人)。返回 author json 或 None。"""
+        """用 ORCID 精确直查作者(全球唯一,零串人)。返回 author json 或 None。缓存。"""
         if not orcid:
             return None
         oc = orcid.replace("https://orcid.org/", "").strip()
+        ck = f"orcid|{oc}"
+        cached = self._cache_get(ck)
+        if cached is not None:
+            return cached
         try:
-            return get_json(f"{BASE}/authors/https://orcid.org/{oc}", key="openalex", per_sec=5,
-                            params=self._params(
-                                select="id,display_name,works_count,last_known_institutions,topics"))
+            a = get_json(f"{BASE}/authors/https://orcid.org/{oc}", key="openalex", per_sec=3,
+                         params=self._params(
+                             select="id,display_name,works_count,last_known_institutions,topics"))
+            self._cache_put(ck, a)
+            return a
         except Exception as e:  # noqa: BLE001
             log.debug(f"OpenAlex ORCID 查询失败 {orcid}: {e}")
             return None
@@ -57,8 +89,12 @@ class OpenAlexCollector:
             a = self.author_by_orcid(orcid)
             if a:
                 return a["id"], a.get("display_name")
+        ck = f"find|{pi_name.lower()}|{(affiliation or '').lower()}"
+        cached = self._cache_get(ck)
+        if cached is not None:
+            return tuple(cached)
         try:
-            d = get_json(f"{BASE}/authors", key="openalex", per_sec=5,
+            d = get_json(f"{BASE}/authors", key="openalex", per_sec=3,
                          params=self._params(
                              search=pi_name, per_page=25,
                              select="id,display_name,works_count,last_known_institutions,topics"))
@@ -83,7 +119,9 @@ class OpenAlexCollector:
             if score > best_score:
                 best, best_score = a, score
         if best:
-            return best["id"], best.get("display_name")
+            res = (best["id"], best.get("display_name"))
+            self._cache_put(ck, list(res))
+            return res
         return None, None
 
     def classify_author(self, pi_name: str, affiliation: str = "", orcid: str = None):
@@ -134,12 +172,16 @@ class OpenAlexCollector:
         }
 
     def get_works_by_author(self, author_id: str, year_from: int, year_to: int, max_papers=60):
-        """取作者在年份区间的论文(按引用降序),分页。"""
-        works, cursor = [], "*"
+        """取作者在年份区间的论文(按引用降序),分页。缓存(非空才存)。"""
         short = author_id.rstrip("/").split("/")[-1]
+        ck = f"works|{short}|{year_from}|{year_to}|{max_papers}"
+        cached = self._cache_get(ck)
+        if cached is not None:
+            return cached
+        works, cursor = [], "*"
         while len(works) < max_papers:
             try:
-                d = get_json(f"{BASE}/works", key="openalex", per_sec=5,
+                d = get_json(f"{BASE}/works", key="openalex", per_sec=3,
                              params=self._params(
                                  filter=f"authorships.author.id:{short},"
                                         f"publication_year:{year_from}-{year_to}",
@@ -155,7 +197,10 @@ class OpenAlexCollector:
             cursor = d.get("meta", {}).get("next_cursor")
             if not cursor:
                 break
-        return [self._parse_work(w) for w in works[:max_papers]]
+        parsed = [self._parse_work(w) for w in works[:max_papers]]
+        if parsed:                     # 非空才缓存(避免把限流导致的空结果缓存)
+            self._cache_put(ck, parsed)
+        return parsed
 
     def _parse_work(self, w):
         authors = []

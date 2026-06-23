@@ -46,6 +46,10 @@ class Config:
         return str(d)
 
     @property
+    def openalex_cache_dir(self):
+        return str(ROOT / self.settings["paths"].get("openalex_cache", "data/raw/openalex_cache"))
+
+    @property
     def max_papers_per_lab(self):
         return self.settings.get("max_papers_per_lab", 60)
 
