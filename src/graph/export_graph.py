@@ -29,6 +29,19 @@ def to_graphml(G, path):
     nx.write_graphml(H, path)
 
 
+def pyvis_html_string(G, height="640px"):
+    """渲染为 HTML 字符串(供 Streamlit 内联),含图例。"""
+    import os
+    import tempfile
+    fd, path = tempfile.mkstemp(suffix=".html")
+    os.close(fd)
+    to_pyvis_html(G, path, height=height)
+    with open(path, encoding="utf-8") as f:
+        html = f.read()
+    os.remove(path)
+    return html
+
+
 def to_pyvis_html(G, path, height="800px"):
     from pyvis.network import Network
     net = Network(height=height, width="100%", bgcolor="#ffffff", font_color="#222",

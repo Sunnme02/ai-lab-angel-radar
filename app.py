@@ -42,7 +42,7 @@ def detail(j):
 
 st.sidebar.title("🛰️ AI Lab Angel Radar")
 page = st.sidebar.radio("页面", ["首页", "实验室雷达", "学生雷达", "Repo 项目雷达",
-                                 "关系图谱", "数据采集控制台"])
+                                 "定制图谱", "数据采集控制台"])
 
 if not os.path.exists(DBP):
     st.warning("数据库尚未生成。请先运行 `python -m src.pipeline.run_all` 或用『数据采集控制台』。")
@@ -169,15 +169,51 @@ elif page == "Repo 项目雷达":
                             "matched_keywords", "last_commit_at", "productization_score"]],
                      use_container_width=True, hide_index=True)
 
-# ---------------- 页面 5：关系图谱 ----------------
-elif page == "关系图谱":
-    st.header("关系图谱")
-    html_path = os.path.join(EXPORTS, "graph.html")
-    if os.path.exists(html_path):
-        with open(html_path, encoding="utf-8") as f:
-            st.components.v1.html(f.read(), height=820, scrolling=True)
-    else:
-        st.info("graph.html 尚未生成,请先运行 pipeline。")
+# ---------------- 页面 5：定制图谱(按需子图)----------------
+elif page == "定制图谱":
+    st.header("定制图谱")
+    st.caption("输入老师/方向/学校,只看相关的那张子图(避免全图毛球)。")
+    import sqlite3 as _sq
+
+    from src.graph.export_graph import pyvis_html_string
+    from src.graph import query as gq
+
+    mode = st.radio("查询方式", ["按老师(恒星)", "按方向", "按学校"], horizontal=True)
+    con = _sq.connect(DBP)
+    from src.db import DB
+    _db = DB(DBP)
+    with _db.session() as sess:
+        G = None
+        caption = ""
+        if mode == "按老师(恒星)":
+            pis = [r[0] for r in con.execute("SELECT pi_name FROM labs ORDER BY pi_name")]
+            pi = st.selectbox("选老师(作为恒星中心)", pis)
+            k = st.slider("最多显示学生数", 5, 60, 30)
+            if pi:
+                G = gq.ego_pi(sess, pi, max_students=k)
+                caption = f"以 **{pi}** 为中心的师承网络"
+        elif mode == "按方向":
+            dirs = gq.all_directions(sess)
+            d = st.selectbox("选方向(或下方自定义)", dirs)
+            d2 = st.text_input("或自定义方向关键词(留空则用上面)", "")
+            direction = d2.strip() or d
+            n = st.slider("最多显示实验室数", 5, 30, 15)
+            if direction:
+                G, total = gq.by_direction(sess, direction, max_labs=n)
+                caption = f"方向 **{direction}**:共命中 {total} 个实验室,显示前 {min(n, total)} 个"
+        else:
+            schools = [r[0] for r in con.execute("SELECT DISTINCT school FROM labs")]
+            sc = st.selectbox("选学校", schools)
+            if sc:
+                G = gq.by_school(sess, sc)
+                caption = f"**{sc}** 的 AI 师承网络"
+
+        if G is not None and G.number_of_nodes() > 0:
+            st.markdown(caption + f"  ·  {G.number_of_nodes()} 节点 / {G.number_of_edges()} 边")
+            st.components.v1.html(pyvis_html_string(G), height=680, scrolling=True)
+        else:
+            st.info("无匹配结果,换个老师/方向试试。")
+    con.close()
 
 # ---------------- 页面 6：数据采集控制台 ----------------
 elif page == "数据采集控制台":
