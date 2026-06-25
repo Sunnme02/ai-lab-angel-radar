@@ -41,8 +41,8 @@ def detail(j):
 
 
 st.sidebar.title("🛰️ AI Lab Angel Radar")
-page = st.sidebar.radio("页面", ["首页", "实验室雷达", "学生雷达", "Repo 项目雷达",
-                                 "定制图谱", "数据采集控制台"])
+page = st.sidebar.radio("页面", ["首页", "检索", "实验室雷达", "学生雷达",
+                                 "Repo 项目雷达", "定制图谱"])
 
 if not os.path.exists(DBP):
     st.warning("数据库尚未生成。请先运行 `python -m src.pipeline.run_all` 或用『数据采集控制台』。")
@@ -215,22 +215,97 @@ elif page == "定制图谱":
             st.info("无匹配结果,换个老师/方向试试。")
     con.close()
 
-# ---------------- 页面 6：数据采集控制台 ----------------
-elif page == "数据采集控制台":
-    st.header("数据采集控制台")
-    st.caption("输入单个 PI 触发采集(会写入同一数据库)。大批量建议用命令行 `python -m src.pipeline.run_all`。")
-    with st.form("collect"):
-        pi = st.text_input("PI name", "Weinan Zhang")
-        school = st.text_input("School", "Shanghai Jiao Tong University")
-        kw = st.text_input("Keywords(逗号分隔)", "LLM,Agent,Recommendation,LoRA")
-        homepage = st.text_input("Homepage URL(可选)", "")
-        go = st.form_submit_button("运行采集 pipeline")
-    if go:
-        from src.pipeline.core import Context, finalize, process_lab
-        with st.spinner(f"采集 {pi} @ {school} …"):
-            ctx = Context(CFG)
-            process_lab(ctx, school, {"pi_name": pi, "homepage_url": homepage or None,
-                                      "keywords": [k.strip() for k in kw.split(",") if k.strip()]})
-            summary = finalize(ctx)
-        st.success(f"完成:{summary}")
-        st.cache_data.clear()
+# ---------------- 页面 2：检索(老师/学生)----------------
+elif page == "检索":
+    st.header("检索")
+    st.caption("输入名字或方向 → 模糊匹配出大牛/学生 → 点开看详情 + 关系网。")
+    import sqlite3 as _sq
+
+    from rapidfuzz import fuzz
+
+    from src.analysis import template_analysis
+    from src.db import DB
+    from src.graph import query as gq
+    from src.graph.export_graph import pyvis_html_string
+
+    kind = st.radio("检索对象", ["老师", "学生"], horizontal=True)
+    con = _sq.connect(DBP)
+    _db = DB(DBP)
+
+    if kind == "老师":
+        c1, c2 = st.columns(2)
+        kw = c1.text_input("老师名字(模糊,可留空)", "")
+        with _db.session() as sess:
+            dirs = ["(不限方向)"] + gq.all_directions(sess)
+        direction = c2.selectbox("方向(可选,模糊)", dirs)
+
+        rows = []
+        for lid, pi, school, kws in con.execute("SELECT id,pi_name,school,keywords FROM labs"):
+            pdir = con.execute("SELECT group_concat(keywords_matched) FROM papers WHERE lab_id=?",
+                               (lid,)).fetchone()[0] or ""
+            dirset = sorted({x.strip() for x in ((kws or "") + "," + pdir).split(",") if x.strip()})
+            if kw and fuzz.partial_ratio(kw.lower(), pi.lower()) < 70:
+                continue
+            if direction != "(不限方向)" and not any(direction.lower() in d.lower() for d in dirset):
+                continue
+            sv = con.execute('SELECT score_value FROM scores WHERE entity_type="lab" AND entity_id=? '
+                             'AND score_name="angel_radar_score"', (lid,)).fetchone()
+            pc = con.execute("SELECT COUNT(*) FROM papers WHERE lab_id=?", (lid,)).fetchone()[0]
+            stu = con.execute('SELECT COUNT(*) FROM relationships WHERE relation_type="ADVISES" '
+                              'AND source_id=(SELECT id FROM people WHERE is_pi=1 AND name=? LIMIT 1) '
+                              'AND confidence>=0.5', (pi,)).fetchone()[0]
+            rows.append({"id": lid, "老师": pi, "学校": school, "分": (sv[0] if sv else 0),
+                         "方向": ", ".join(dirset[:4]), "论文": pc, "学生": stu})
+        rows.sort(key=lambda r: r["分"], reverse=True)
+        st.write(f"命中 **{len(rows)}** 位老师")
+        st.dataframe(pd.DataFrame([{k: v for k, v in r.items() if k != "id"} for r in rows]).head(60),
+                     hide_index=True, use_container_width=True)
+
+        if rows:
+            pick = st.selectbox("选一位看详情 + 关系网", [r["老师"] for r in rows[:60]])
+            r = next(x for x in rows if x["老师"] == pick)
+            lid = r["id"]
+            st.markdown(f"### {pick} · {r['学校']}  —  分数 **{r['分']}**")
+            cols = st.columns(2)
+            with cols[0]:
+                st.markdown("**代表论文(按引用)**")
+                for t, y, c in con.execute("SELECT title,year,citation_count FROM papers WHERE lab_id=? "
+                                           "ORDER BY citation_count DESC LIMIT 5", (lid,)):
+                    st.markdown(f"- [{y}] {str(t)[:64]} · cite {c}")
+            with cols[1]:
+                st.markdown("**高置信学生(ADVISES)**")
+                for nm, cf in con.execute(
+                        '''SELECT pe.name,r.confidence FROM relationships r JOIN people pe ON pe.id=r.target_id
+                           JOIN people pi ON pi.id=r.source_id
+                           WHERE r.relation_type="ADVISES" AND pi.name=? AND r.confidence>=0.5
+                           ORDER BY r.confidence DESC LIMIT 6''', (pick,)):
+                    st.markdown(f"- {nm} · 置信 {cf}")
+            st.markdown(f"**🌟 以 {pick} 为中心的关系网**")
+            with _db.session() as sess:
+                G = gq.ego_pi(sess, pick, max_students=30)
+            st.components.v1.html(pyvis_html_string(G, height="560px"), height=580, scrolling=True)
+
+    else:  # 学生
+        kw = st.text_input("学生名字(模糊,可留空)", "")
+        out = []
+        for pid, name, aff, sv, dj in con.execute(
+                '''SELECT pe.id,pe.name,pe.affiliation,s.score_value,s.score_detail_json
+                   FROM scores s JOIN people pe ON pe.id=s.entity_id
+                   WHERE s.entity_type="person" AND s.score_name="student_startup_score"
+                   AND pe.is_pi=0 AND pe.is_student_candidate=1
+                   ORDER BY s.score_value DESC LIMIT 3000'''):
+            if kw and fuzz.partial_ratio(kw.lower(), (name or "").lower()) < 70:
+                continue
+            d = detail(dj)
+            fa = con.execute("SELECT COUNT(*) FROM authorships WHERE person_id=? AND is_first_author=1",
+                             (pid,)).fetchone()[0]
+            adv = con.execute('SELECT pi.name FROM relationships r JOIN people pi ON pi.id=r.source_id '
+                              'WHERE r.relation_type="ADVISES" AND r.target_id=? '
+                              'ORDER BY r.confidence DESC LIMIT 1', (pid,)).fetchone()
+            out.append({"学生": name, "导师": adv[0] if adv else "", "机构": aff,
+                        "一作": fa, "分": sv, "接触优先级": d.get("contact_priority", "")})
+            if len(out) >= 80:
+                break
+        st.write(f"命中 **{len(out)}** 名学生(按创业潜力分排序)")
+        st.dataframe(pd.DataFrame(out), hide_index=True, use_container_width=True)
+    con.close()
