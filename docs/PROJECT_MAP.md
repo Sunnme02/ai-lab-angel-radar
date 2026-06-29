@@ -60,3 +60,12 @@ The HTML is self-contained enough to share as a static local file.
 - `skills/ai-lab-radar/SKILL.md`: repository-local skill draft. It is not
   installed globally yet; treat it as the version-controlled source for a future
   Codex/Claude-style skill.
+
+## Demo Assets
+
+The README uses synthetic, non-data-bearing demo diagrams:
+
+- `docs/assets/demo-direction-graph.svg`
+- `docs/assets/demo-professor-ego.svg`
+
+These are safe to publish. They are not generated from the local database.

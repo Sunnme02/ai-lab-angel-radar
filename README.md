@@ -1,72 +1,24 @@
-# AI Lab Angel Radar · AI 实验室早期创业雷达
+# AI Lab Angel Radar
 
-自动从公开数据源发现中国顶尖高校 AI 实验室中**潜在的早期创业机会**,输出实验室/学生/项目雷达 + 关系图谱 + Angel Radar 评分排名。
+An open-source radar for AI lab discovery. Give it an AI direction or a professor
+name, and it builds a focused knowledge graph of professors, students, schools
+and relationship evidence.
 
-> 核心问题:**哪个实验室、哪个学生、哪个项目,最可能在未来 6–24 个月形成一个可投的 AI 初创公司?**
+The project is designed for early technical scouting: finding which labs,
+students and research lines may be worth deeper follow-up.
 
-## 1. 项目介绍
-输入「学校 + 技术关键词 + 年份」,系统自动:采集近三年论文(OpenAlex/S2)→ 识别核心学生与一作 → 匹配 GitHub 工程项目 → 分类方向与创业信号 → 规则评分 → 构建关系图谱 → 在 Streamlit Dashboard 呈现排名与分析。
+## Two Core Workflows
 
-## 2. 项目架构
-```
-src/
-  config.py            读取 .env / settings.yaml / labs_seed.yaml
-  db.py, models.py     SQLite + SQLAlchemy(9 张表,带 created/updated_at + upsert 去重)
-  collectors/
-    academic/          openalex / semantic_scholar / dblp / openreview
-    web/               homepage / search / news
-    github/            github_api / repo_matcher(带 confidence)
-  entity_resolution/   people / org / paper 消歧(保留 confidence)
-  classifiers/         keyword_classifier / startup_signal_classifier(规则法)
-  scoring/             lab / person / repo 评分(每分带 explanation)
-  graph/               build_graph / network_metrics(degree/betweenness/PageRank) / export(GraphML/JSON/PyVis)
-  pipeline/            core(编排)/ run_all / run_lab
-  analysis.py          自动投资分析(模板;有 LLM key 可换 LLM)
-app.py                 Streamlit Dashboard(6 页)
-```
+### 1. Search By Direction
 
-## 3. 安装
-```bash
-python -m venv venv && source venv/bin/activate   # 可选
-pip install -r requirements.txt
-cp .env.example .env                              # 按需填写
-```
+Input an AI direction such as `Agent`, `World Model`, `VLA`, `AI Infra`,
+`Multimodal`, or `Autonomous Driving`. The tool searches lab keywords and paper
+evidence, then outputs a focused direction graph:
 
-## 4. 环境变量(`.env`)
-| 变量 | 是否必须 | 说明 |
-|---|---|---|
-| `OPENALEX_EMAIL` | 建议 | 进入 OpenAlex polite pool(更快更稳) |
-| `GITHUB_TOKEN` | **强烈建议** | 免费 PAT;无则跳过 GitHub 采集,工程/学生评分偏低 |
-| `SEMANTIC_SCHOLAR_API_KEY` | 可选 | 提高 S2 限流额度 |
-| `OPENAI_API_KEY` / `ANTHROPIC_API_KEY` | 可选 | 生成 LLM 版投资分析;无则用模板 |
-
-## 5. 运行 pipeline
-```bash
-# 跑全部 seed labs(configs/settings.yaml + data/seeds/labs_seed.yaml)
-python -m src.pipeline.run_all
-
-# 只跑前 N 个 lab(调试)
-python -m src.pipeline.run_all --limit-labs 2
-
-# 跑单个 PI
-python -m src.pipeline.run_lab --pi "Xipeng Qiu" --school "Fudan University" --keywords "LLM,PEFT,LoRA"
-```
-产物:`data/radar.db`(SQLite)+ `data/exports/*.csv` + `graph.json/.html`。
-
-## 6. 生成 World Model 方向图谱
-```bash
-python -m src.graph.export_world_model_graph
-```
-
-默认输出:
-
-- `data/exports/world_model_graph.html`
-- `data/exports/world_model_graph.json`
-- `data/exports/world_model_graph.graphml`
-
-这个图谱使用「方向 → 教授 → 学生/学校」的精简逻辑,论文只作为方向证据,不进入图节点。
-
-生成任意 AI 方向图谱:
+- direction -> professor
+- professor -> student
+- school -> professor
+- papers stay as hover/evidence text, not graph nodes
 
 ```bash
 python -m src.graph.export_direction_graph \
@@ -74,78 +26,150 @@ python -m src.graph.export_direction_graph \
   --keywords "AI Agent,LLM Agent,multi-agent,tool use,planning"
 ```
 
-生成单个老师的恒星图:
+![Direction graph demo](docs/assets/demo-direction-graph.svg)
+
+### 2. Search By Professor
+
+Input a professor name and generate a radial ego graph. The professor is fixed in
+the center; students are placed on a ring; purple lines mean professor-student
+guidance/collaboration; gray lines mean student-student coauthored papers.
 
 ```bash
-python -m src.graph.export_pi_ego_graph --pi "Fuchun Sun" --max-students 16
+python -m src.graph.export_pi_ego_graph --pi "Xipeng Qiu" --max-students 16
 ```
 
-默认输出:
+![Professor ego graph demo](docs/assets/demo-professor-ego.svg)
 
-- `data/exports/pi_ego_graph.html`
-- `data/exports/pi_ego_graph.json`
-- `data/exports/pi_ego_<teacher_name>.html`
-- `data/exports/pi_ego_<teacher_name>.json`
-- `data/exports/direction_graph.html`
-- `data/exports/direction_graph.json`
-- `data/exports/direction_graph_<direction>.html`
-- `data/exports/direction_graph_<direction>.json`
+## Outputs
 
-## 7. 启动 Dashboard
+Generated artifacts are written under `data/exports/`:
+
+- `direction_graph.html/json/graphml`
+- `direction_graph_<direction>.html/json/graphml`
+- `pi_ego_graph.html/json`
+- `pi_ego_<teacher_name>.html/json`
+
+`data/exports/` is ignored by git so local generated data is not published by
+default.
+
+## Installation
+
+```bash
+python -m venv venv && source venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+```
+
+Optional environment variables:
+
+| Variable | Required | Notes |
+|---|---:|---|
+| `OPENALEX_EMAIL` | recommended | OpenAlex polite-pool email |
+| `GITHUB_TOKEN` | recommended | Needed for stronger repo/project signals |
+| `SEMANTIC_SCHOLAR_API_KEY` | optional | Higher Semantic Scholar quota |
+| `OPENAI_API_KEY` / `ANTHROPIC_API_KEY` | optional | Reserved for LLM analysis |
+
+## Build The Local Database
+
+```bash
+# Run configured seed labs.
+python -m src.pipeline.run_all
+
+# Debug with only a few labs.
+python -m src.pipeline.run_all --limit-labs 2
+
+# Run one professor/lab target.
+python -m src.pipeline.run_lab \
+  --pi "Xipeng Qiu" \
+  --school "Fudan University" \
+  --keywords "LLM,PEFT,LoRA"
+```
+
+The local database is `data/radar.db`. It is ignored by git.
+
+## Dashboard
+
 ```bash
 streamlit run app.py
 ```
-6 个页面:首页 / 实验室雷达 / 学生雷达 / Repo 项目雷达 / 关系图谱 / 数据采集控制台。
 
-## 8. 启动本地 API
+Dashboard pages include lab radar, student radar, repo radar, focused graphs and
+search views.
+
+## Local API
+
+The API is optional. It is a local machine-callable entry point for web pages,
+LLM agents or skills. Direct commands work without starting it.
+
 ```bash
 uvicorn src.api:app --reload
 ```
 
-初版 API:
+Main endpoints:
 
-- `GET /health`
-- `GET /world-model/directions`
-- `GET /world-model/directions/{direction}`
-- `GET /world-model/professors/{name}`
-- `POST /world-model/export`
 - `POST /directions/graph/export`
 - `POST /professors/{name}/ego/export`
 
-API 只是薄壳,方向/教授查询仍复用本地确定性图谱逻辑。
+Legacy World Model endpoints are kept for compatibility but are not the primary
+workflow.
 
-## 9. 项目文档
-- [项目地图](docs/PROJECT_MAP.md)
-- [开源前检查清单](docs/OPEN_SOURCE_CHECKLIST.md)
-- [通用方向图谱逻辑](docs/GENERIC_DIRECTION_GRAPH.md)
-- [World Model 图谱逻辑](docs/WORLD_MODEL_GRAPH.md)
-- [API / Skill 化路线](docs/API_AND_SKILL_PLAN.md)
+## Project Structure
 
-## 10. 数据来源
-- 学术:OpenAlex(主)、Semantic Scholar(补 h-index)、DBLP、OpenReview。
-- 工程:GitHub API(repo/stars/README/topics)。
-- 网页:导师/实验室主页(成员与产业信号)、DuckDuckGo 轻量搜索(新闻线索)。
-- 第一版只用**公开数据**,不接付费数据库。
+```text
+src/
+  collectors/           public data collection
+  entity_resolution/    people, org and paper matching
+  classifiers/          keyword and startup-signal classifiers
+  scoring/              lab, person and repo scoring
+  graph/                graph builders and HTML/JSON/GraphML exports
+  services/             reusable functions for API/skill workflows
+  pipeline/             orchestration commands
+app.py                  Streamlit dashboard
+skills/ai-lab-radar/    repository-local skill draft
+docs/                   project docs and demo assets
+```
 
-## 11. 评分体系(规则法,均带 explanation)
-- **实验室 Angel Radar Score(100)**:技术前沿15 / 工程化20 / 学生潜力20 / 产业连接15 / 数据闭环15 / 商业防御10 / 导师支持5。
-- **学生创业潜力(100)**:论文20 / 工程25 / 前沿匹配15 / 产品化15 / 产业连接10 / 网络中心性10 / 创业窗口5。
-- **Repo 产品化(100)**:活跃20 / 社区20 / 产品化20 / 前沿20 / 商业场景20。
-- 每个分都写入 `score_detail_json`,Dashboard 展示分数来源。
+## Docs
 
-## 12. 置信度说明
-- GitHub repo ↔ 人 的匹配保留 `confidence`(主页直链=1.0,用户名命中=0.9,README 提论文=0.85,fuzzy=0.6;<0.6 仅作 candidate)。
-- 人物消歧:OpenAlex id 一致 / 同名+机构相近才合并;同名异机构不合并。
-- 低置信匹配不当作事实,Dashboard 标注来源与置信度。
+- [Project map](docs/PROJECT_MAP.md)
+- [Generic direction graph](docs/GENERIC_DIRECTION_GRAPH.md)
+- [Professor ego graph](docs/PI_EGO_GRAPH.md)
+- [Open-source checklist](docs/OPEN_SOURCE_CHECKLIST.md)
+- [API and skill plan](docs/API_AND_SKILL_PLAN.md)
 
-## 13. 当前局限
-- 无 `GITHUB_TOKEN` 时工程/学生信号严重偏低。
-- 角色识别弱(一作默认 PhD 候选,其余 Unknown,不强行打高分)。
-- 学生/PI 重名仍可能误判(已用机构 + 计算机领域加权降低,但非零)。
-- "即将创业/隐身公司"无法靠公开搜索发现(见路线图 v0.4 工商监控)。
-- 第一版优先**可运行**,不追求完美召回。
+## Tests
 
-## 14. 后续路线图
-- v0.2:自动发现更多实验室、HF/ModelScope、高校成员页抽取、中文新闻、更强消歧。
-- v0.3:Neo4j、LLM 信息抽取、投资 memo 自动生成、周度自动更新。
-- v0.4:公司注册/融资数据(企查查等)、校友创业图谱、投资人网络、"即将创业学生"信号监控。
+```bash
+pytest -q
+```
+
+## Data And Privacy
+
+The project is designed around public data sources, but local outputs may contain
+cached public data, inferred relationships and analysis state. Do not publish:
+
+- `.env`
+- `data/radar.db`
+- `data/exports/`
+- `data/raw/`
+- `data/processed/`
+
+These are already ignored by `.gitignore`.
+
+## Current Limits
+
+- Without `GITHUB_TOKEN`, engineering/project signals are weaker.
+- Student/PI relationships are inferred from public signals and may contain
+  noise.
+- Direction search is keyword/evidence based; it is meant for scouting, not as a
+  ground-truth academic taxonomy.
+- No private company-registration or financing database is included.
+
+## Roadmap
+
+- Generalize direction templates and keyword expansion.
+- Add richer professor search across the full radar graph.
+- Add sanitized demo datasets.
+- Add optional LLM-generated memos grounded in stored evidence.
+- Package `skills/ai-lab-radar` as an installable Codex/Claude-style skill.
+

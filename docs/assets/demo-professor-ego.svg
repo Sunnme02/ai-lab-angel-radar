@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="560" viewBox="0 0 980 560" role="img" aria-label="Professor ego graph demo">
+  <rect width="980" height="560" rx="18" fill="#fbfbf8"/>
+  <style>
+    .title{font:700 26px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}
+    .sub{font:500 15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#64748b}
+    .label{font:700 14px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#111827}
+    .small{font:600 12px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#475569}
+    .mentor{stroke:#4c1d95;stroke-linecap:round;opacity:.72}
+    .student{stroke:#8b8fa3;stroke-linecap:round;opacity:.42}
+  </style>
+  <text x="34" y="48" class="title">Professor Search</text>
+  <text x="34" y="76" class="sub">Input a professor name, then inspect student branches and coauthor links.</text>
+
+  <g transform="translate(520,292)">
+    <line x1="0" y1="0" x2="0" y2="-180" class="mentor" stroke-width="8"/>
+    <line x1="0" y1="0" x2="128" y2="-128" class="mentor" stroke-width="5"/>
+    <line x1="0" y1="0" x2="180" y2="0" class="mentor" stroke-width="7"/>
+    <line x1="0" y1="0" x2="128" y2="128" class="mentor" stroke-width="4"/>
+    <line x1="0" y1="0" x2="0" y2="180" class="mentor" stroke-width="6"/>
+    <line x1="0" y1="0" x2="-128" y2="128" class="mentor" stroke-width="3"/>
+    <line x1="0" y1="0" x2="-180" y2="0" class="mentor" stroke-width="5"/>
+    <line x1="0" y1="0" x2="-128" y2="-128" class="mentor" stroke-width="4"/>
+
+    <line x1="0" y1="-180" x2="128" y2="-128" class="student" stroke-width="3"/>
+    <line x1="128" y1="-128" x2="180" y2="0" class="student" stroke-width="2"/>
+    <line x1="180" y1="0" x2="128" y2="128" class="student" stroke-width="4"/>
+    <line x1="128" y1="128" x2="0" y2="180" class="student" stroke-width="2.5"/>
+    <line x1="0" y1="180" x2="-128" y2="128" class="student" stroke-width="3.5"/>
+    <line x1="-180" y1="0" x2="-128" y2="-128" class="student" stroke-width="2"/>
+    <line x1="-128" y1="-128" x2="0" y2="-180" class="student" stroke-width="3"/>
+
+    <circle cx="0" cy="0" r="62" fill="#0b5d2a" stroke="#062814" stroke-width="4"/>
+    <text x="0" y="6" text-anchor="middle" font="700 17px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" fill="#fff">Professor</text>
+
+    <circle cx="0" cy="-180" r="26" fill="#0f7a37" stroke="#1f2937" stroke-width="2"/>
+    <text x="0" y="-218" text-anchor="middle" class="label">Student A</text>
+    <circle cx="128" cy="-128" r="23" fill="#55b567" stroke="#1f2937" stroke-width="2"/>
+    <text x="170" y="-150" text-anchor="middle" class="label">Student B</text>
+    <circle cx="180" cy="0" r="25" fill="#0f7a37" stroke="#1f2937" stroke-width="2"/>
+    <text x="246" y="5" text-anchor="middle" class="label">Student C</text>
+    <circle cx="128" cy="128" r="21" fill="#b8d5aa" stroke="#1f2937" stroke-width="2"/>
+    <text x="194" y="148" text-anchor="middle" class="label">Student D</text>
+    <circle cx="0" cy="180" r="24" fill="#55b567" stroke="#1f2937" stroke-width="2"/>
+    <text x="0" y="226" text-anchor="middle" class="label">Student E</text>
+    <circle cx="-128" cy="128" r="20" fill="#b8d5aa" stroke="#1f2937" stroke-width="2"/>
+    <text x="-194" y="148" text-anchor="middle" class="label">Student F</text>
+    <circle cx="-180" cy="0" r="23" fill="#55b567" stroke="#1f2937" stroke-width="2"/>
+    <text x="-250" y="5" text-anchor="middle" class="label">Student G</text>
+    <circle cx="-128" cy="-128" r="21" fill="#b8d5aa" stroke="#1f2937" stroke-width="2"/>
+    <text x="-194" y="-150" text-anchor="middle" class="label">Student H</text>
+  </g>
+
+  <rect x="34" y="438" width="334" height="78" rx="10" fill="#fff" stroke="#e5e7eb"/>
+  <line x1="58" y1="462" x2="110" y2="462" class="mentor" stroke-width="8"/>
+  <text x="126" y="467" class="small">purple: professor-student</text>
+  <line x1="58" y1="492" x2="110" y2="492" class="student" stroke-width="5"/>
+  <text x="126" y="497" class="small">gray: student-student coauthor</text>
+</svg>
