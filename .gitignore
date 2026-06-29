@@ -30,3 +30,4 @@ venv/
 *.log
 tmp/
 scratch/
+dist/

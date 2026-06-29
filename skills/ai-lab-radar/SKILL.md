@@ -1,6 +1,6 @@
 ---
 name: ai-lab-radar
-description: General AI direction radar skill: given any AI direction, keywords, or professor name, use the local ai-lab-angel-radar project to retrieve lab/professor/student/project signals, build explainable relationship graphs, and summarize startup-relevant watchlists.
+description: "General AI direction radar skill: given any AI direction, keywords, or professor name, use the local ai-lab-angel-radar project to retrieve lab/professor/student/project signals, build explainable relationship graphs, and summarize startup-relevant watchlists."
 ---
 
 # AI Lab Radar

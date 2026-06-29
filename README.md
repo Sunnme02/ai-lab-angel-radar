@@ -211,6 +211,22 @@ python -m src.llm.write_memo \
 
 LLM 增强层的原则是：规则管线负责事实和证据，LLM 负责理解、审查和表达。对外展示前仍建议人工复核关键关系。
 
+## Skill 包
+
+仓库内置了一个可复用 skill：
+
+- `skills/ai-lab-radar/SKILL.md`
+- `skills/ai-lab-radar/SKILL.zh-CN.md`
+- `skills/ai-lab-radar/agents/openai.yaml`
+
+这个 skill 面向 Codex/Claude-style agent 工作流：给定 AI 方向或老师，调用本项目的本地命令生成图谱、审查关系证据、输出 memo。`agents/openai.yaml` 是 UI/安装元数据，`SKILL.md` 是英文主入口，中文说明保留在 `SKILL.zh-CN.md`。
+
+如果要单独分发，可以把整个目录打包：
+
+```bash
+tar -czf dist/ai-lab-radar-skill.tar.gz -C skills ai-lab-radar
+```
+
 ## 可视化面板
 
 ```bash

@@ -1,0 +1,5 @@
+interface:
+  display_name: "AI Lab Radar"
+  short_description: "Build AI lab graphs and review evidence"
+  brand_color: "#2563EB"
+  default_prompt: "Use $ai-lab-radar to generate an AI direction graph and audit the relationship evidence."

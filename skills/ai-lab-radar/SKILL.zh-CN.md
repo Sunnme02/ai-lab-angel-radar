@@ -1,6 +1,6 @@
 ---
 name: ai-lab-radar
-description: 通用 AI 方向雷达技能：给定任意 AI 方向、关键词或教授名字，使用本地 ai-lab-angel-radar 项目检索实验室/教授/学生/项目信号，生成可解释关系图谱和简洁观察清单。
+description: "通用 AI 方向雷达技能：给定任意 AI 方向、关键词或教授名字，使用本地 ai-lab-angel-radar 项目检索实验室/教授/学生/项目信号，生成可解释关系图谱和简洁观察清单。"
 ---
 
 # AI Lab Radar
