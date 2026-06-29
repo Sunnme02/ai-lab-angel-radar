@@ -221,6 +221,33 @@ LLM 增强层的原则是：规则管线负责事实和证据，LLM 负责理解
 
 这个 skill 面向 Codex/Claude-style agent 工作流：给定 AI 方向或老师，调用本项目的本地命令生成图谱、审查关系证据、输出 memo。`agents/openai.yaml` 是 UI/安装元数据，`SKILL.md` 是英文主入口，中文说明保留在 `SKILL.zh-CN.md`。
 
+### 怎么用这个 skill
+
+如果 agent 支持直接读取仓库内 skill，可以在项目根目录里这样问：
+
+```text
+Use $ai-lab-radar to generate an Agent direction graph and audit the evidence.
+```
+
+或者中文问：
+
+```text
+用 $ai-lab-radar 帮我看一下世界模型方向，生成方向图并审查关系证据。
+```
+
+如果需要安装到本机 Codex skill 目录，可以复制整个 skill 文件夹：
+
+```bash
+mkdir -p ~/.codex/skills
+cp -R skills/ai-lab-radar ~/.codex/skills/
+```
+
+安装后，新对话里可以直接提：
+
+```text
+用 ai-lab-radar 看一下 Xipeng Qiu 的学生候选关系图。
+```
+
 如果要单独分发，可以把整个目录打包：
 
 ```bash
@@ -267,7 +294,7 @@ src/
   services/             API/Skill 可复用服务
   pipeline/             数据流水线命令
 app.py                  Streamlit 可视化面板
-skills/ai-lab-radar/    仓库内置 Skill 草稿
+skills/ai-lab-radar/    仓库内置可复用 Skill
 docs/                   项目文档和演示素材
 ```
 
