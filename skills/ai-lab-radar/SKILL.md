@@ -26,6 +26,8 @@ autonomous driving.
 1. Preserve the user's original direction name.
 2. Expand it into a small keyword set when useful. For example, Agent can map to
    AI Agent, LLM Agent, multi-agent, tool use and planning.
+   If LLM credentials are configured, prefer `src.llm.expand_direction` for this
+   step; otherwise use deterministic templates or user-provided keywords.
 3. Query local lab keywords and paper title/keyword evidence first.
 4. Select relevant labs/professors, then expand only high-confidence students.
 5. Keep papers as evidence by default. Do not expand every paper author into the
@@ -44,6 +46,25 @@ Generate a professor-centered ego star graph:
 
 ```bash
 python -m src.graph.export_pi_ego_graph --pi "Fuchun Sun" --max-students 16
+```
+
+Optionally expand direction keywords:
+
+```bash
+python -m src.llm.expand_direction --direction "World Model"
+```
+
+Optionally audit graph relationships. Use `--no-llm` when credentials are not
+available.
+
+```bash
+python -m src.llm.audit_graph --input data/exports/pi_ego_xipeng_qiu.json
+```
+
+Optionally write a scouting memo from graph JSON:
+
+```bash
+python -m src.llm.write_memo --input data/exports/direction_graph_agent.json
 ```
 
 Run the dashboard:
@@ -104,6 +125,9 @@ For professor queries, return:
 - matched directions
 - student branch
 - caveats about noisy inferred relationships
+
+If an LLM audit or memo was generated, state that the LLM is an optional review
+and writing layer, not the source of ground-truth relationship facts.
 
 ## Safety
 

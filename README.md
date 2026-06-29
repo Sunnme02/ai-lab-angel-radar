@@ -99,7 +99,8 @@ cp .env.example .env
 | `OPENALEX_EMAIL` | 建议 | OpenAlex 礼貌访问邮箱 |
 | `GITHUB_TOKEN` | 建议 | 用于增强 GitHub repo/project 信号 |
 | `SEMANTIC_SCHOLAR_API_KEY` | 可选 | 提高 Semantic Scholar 请求额度 |
-| `OPENAI_API_KEY` / `ANTHROPIC_API_KEY` | 可选 | 预留给后续 LLM 分析 |
+| `LLM_PROVIDER` / `LLM_MODEL` | 可选 | LLM 增强层配置，默认可用 OpenAI 风格配置 |
+| `OPENAI_API_KEY` / `ANTHROPIC_API_KEY` | 可选 | 用于方向扩展、图谱审查和分析 memo |
 
 ## 数据下载与更新
 
@@ -162,6 +163,54 @@ python -m src.pipeline.run_all --seeds data/seeds/labs_seed.yaml
 
 本地数据库文件是 `data/radar.db`，默认不会上传到 GitHub。初始化、更新和重新导出图谱的命令见上面的“数据下载与更新”。
 
+## 可选 LLM 增强
+
+项目核心流程不依赖 LLM。没有 `OPENAI_API_KEY` 或 `ANTHROPIC_API_KEY` 时，数据采集、关系推断、打分和图谱生成仍然可以正常运行。
+
+LLM 只作为增强层使用，负责方向理解、图谱审查和结果解释，不作为底层事实来源。
+
+### 方向关键词扩展
+
+把自然语言方向扩展成可用于图谱搜索的关键词：
+
+```bash
+python -m src.llm.expand_direction --direction "世界模型"
+```
+
+没有 LLM key 时，可以使用内置模板：
+
+```bash
+python -m src.llm.expand_direction --direction "世界模型" --no-llm
+```
+
+### 图谱关系审查
+
+审查图谱里的老师-学生候选关系，区分高置信推断、需要复核和可能误判：
+
+```bash
+python -m src.llm.audit_graph \
+  --input data/exports/pi_ego_xipeng_qiu.json
+```
+
+无 LLM key 时会自动生成规则版审查报告，也可以显式指定：
+
+```bash
+python -m src.llm.audit_graph \
+  --input data/exports/pi_ego_xipeng_qiu.json \
+  --no-llm
+```
+
+### 生成分析 memo
+
+根据方向图或老师恒星图生成中文侦察 memo：
+
+```bash
+python -m src.llm.write_memo \
+  --input data/exports/direction_graph_agent.json
+```
+
+LLM 增强层的原则是：规则管线负责事实和证据，LLM 负责理解、审查和表达。对外展示前仍建议人工复核关键关系。
+
 ## 可视化面板
 
 ```bash
@@ -198,6 +247,7 @@ src/
   classifiers/          关键词与创业信号分类
   scoring/              实验室、学生、repo 评分
   graph/                图谱构建与 HTML/JSON/GraphML 导出
+  llm/                  可选 LLM 增强：方向扩展、图谱审查、memo
   services/             API/Skill 可复用服务
   pipeline/             数据流水线命令
 app.py                  Streamlit 可视化面板

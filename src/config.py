@@ -21,6 +21,8 @@ class Config:
         self.github_token = os.getenv("GITHUB_TOKEN", "")
         self.openai_key = os.getenv("OPENAI_API_KEY", "")
         self.anthropic_key = os.getenv("ANTHROPIC_API_KEY", "")
+        self.llm_provider = os.getenv("LLM_PROVIDER", "openai")
+        self.llm_model = os.getenv("LLM_MODEL", "")
 
     # 便捷取值
     @property
