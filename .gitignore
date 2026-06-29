@@ -1,8 +1,12 @@
 # 密钥(绝不提交)
 .env
+.env.*
+!.env.example
 
 # 数据/产物(可重新生成)
 data/radar.db
+*.sqlite
+*.sqlite3
 data/exports/
 data/raw/
 data/processed/
@@ -12,8 +16,17 @@ __pycache__/
 *.pyc
 *.pyo
 .pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
 venv/
 .venv/
 
 # OS
 .DS_Store
+
+# Logs / local scratch
+*.log
+tmp/
+scratch/

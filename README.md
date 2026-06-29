@@ -53,37 +53,99 @@ python -m src.pipeline.run_lab --pi "Xipeng Qiu" --school "Fudan University" --k
 ```
 产物:`data/radar.db`(SQLite)+ `data/exports/*.csv` + `graph.json/.html`。
 
-## 6. 启动 Dashboard
+## 6. 生成 World Model 方向图谱
+```bash
+python -m src.graph.export_world_model_graph
+```
+
+默认输出:
+
+- `data/exports/world_model_graph.html`
+- `data/exports/world_model_graph.json`
+- `data/exports/world_model_graph.graphml`
+
+这个图谱使用「方向 → 教授 → 学生/学校」的精简逻辑,论文只作为方向证据,不进入图节点。
+
+生成任意 AI 方向图谱:
+
+```bash
+python -m src.graph.export_direction_graph \
+  --direction "Agent" \
+  --keywords "AI Agent,LLM Agent,multi-agent,tool use,planning"
+```
+
+生成单个老师的恒星图:
+
+```bash
+python -m src.graph.export_pi_ego_graph --pi "Fuchun Sun" --max-students 16
+```
+
+默认输出:
+
+- `data/exports/pi_ego_graph.html`
+- `data/exports/pi_ego_graph.json`
+- `data/exports/pi_ego_<teacher_name>.html`
+- `data/exports/pi_ego_<teacher_name>.json`
+- `data/exports/direction_graph.html`
+- `data/exports/direction_graph.json`
+- `data/exports/direction_graph_<direction>.html`
+- `data/exports/direction_graph_<direction>.json`
+
+## 7. 启动 Dashboard
 ```bash
 streamlit run app.py
 ```
 6 个页面:首页 / 实验室雷达 / 学生雷达 / Repo 项目雷达 / 关系图谱 / 数据采集控制台。
 
-## 7. 数据来源
+## 8. 启动本地 API
+```bash
+uvicorn src.api:app --reload
+```
+
+初版 API:
+
+- `GET /health`
+- `GET /world-model/directions`
+- `GET /world-model/directions/{direction}`
+- `GET /world-model/professors/{name}`
+- `POST /world-model/export`
+- `POST /directions/graph/export`
+- `POST /professors/{name}/ego/export`
+
+API 只是薄壳,方向/教授查询仍复用本地确定性图谱逻辑。
+
+## 9. 项目文档
+- [项目地图](docs/PROJECT_MAP.md)
+- [开源前检查清单](docs/OPEN_SOURCE_CHECKLIST.md)
+- [通用方向图谱逻辑](docs/GENERIC_DIRECTION_GRAPH.md)
+- [World Model 图谱逻辑](docs/WORLD_MODEL_GRAPH.md)
+- [API / Skill 化路线](docs/API_AND_SKILL_PLAN.md)
+
+## 10. 数据来源
 - 学术:OpenAlex(主)、Semantic Scholar(补 h-index)、DBLP、OpenReview。
 - 工程:GitHub API(repo/stars/README/topics)。
 - 网页:导师/实验室主页(成员与产业信号)、DuckDuckGo 轻量搜索(新闻线索)。
 - 第一版只用**公开数据**,不接付费数据库。
 
-## 8. 评分体系(规则法,均带 explanation)
+## 11. 评分体系(规则法,均带 explanation)
 - **实验室 Angel Radar Score(100)**:技术前沿15 / 工程化20 / 学生潜力20 / 产业连接15 / 数据闭环15 / 商业防御10 / 导师支持5。
 - **学生创业潜力(100)**:论文20 / 工程25 / 前沿匹配15 / 产品化15 / 产业连接10 / 网络中心性10 / 创业窗口5。
 - **Repo 产品化(100)**:活跃20 / 社区20 / 产品化20 / 前沿20 / 商业场景20。
 - 每个分都写入 `score_detail_json`,Dashboard 展示分数来源。
 
-## 9. 置信度说明
+## 12. 置信度说明
 - GitHub repo ↔ 人 的匹配保留 `confidence`(主页直链=1.0,用户名命中=0.9,README 提论文=0.85,fuzzy=0.6;<0.6 仅作 candidate)。
 - 人物消歧:OpenAlex id 一致 / 同名+机构相近才合并;同名异机构不合并。
 - 低置信匹配不当作事实,Dashboard 标注来源与置信度。
 
-## 10. 当前局限
+## 13. 当前局限
 - 无 `GITHUB_TOKEN` 时工程/学生信号严重偏低。
 - 角色识别弱(一作默认 PhD 候选,其余 Unknown,不强行打高分)。
 - 学生/PI 重名仍可能误判(已用机构 + 计算机领域加权降低,但非零)。
 - "即将创业/隐身公司"无法靠公开搜索发现(见路线图 v0.4 工商监控)。
 - 第一版优先**可运行**,不追求完美召回。
 
-## 11. 后续路线图
+## 14. 后续路线图
 - v0.2:自动发现更多实验室、HF/ModelScope、高校成员页抽取、中文新闻、更强消歧。
 - v0.3:Neo4j、LLM 信息抽取、投资 memo 自动生成、周度自动更新。
 - v0.4:公司注册/融资数据(企查查等)、校友创业图谱、投资人网络、"即将创业学生"信号监控。
