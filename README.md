@@ -101,21 +101,31 @@ cp .env.example .env
 | `SEMANTIC_SCHOLAR_API_KEY` | 可选 | 提高 Semantic Scholar 请求额度 |
 | `OPENAI_API_KEY` / `ANTHROPIC_API_KEY` | 可选 | 预留给后续 LLM 分析 |
 
-## 构建本地数据库
+## 数据下载与更新
 
-运行配置好的种子实验室：
+这个仓库默认不包含完整本地数据。原因是 `data/radar.db`、`data/raw/` 和 `data/exports/` 里可能包含缓存的公开论文数据、推断关系、分析结果和本地生成产物，不适合直接随 GitHub 发布。
+
+clone 仓库后，使用者需要在本地重新构建数据：
 
 ```bash
 python -m src.pipeline.run_all
 ```
 
-只调试少量实验室：
+这一步会从配置好的种子实验室出发，采集公开学术数据，更新本地 SQLite 数据库，并导出基础 CSV/HTML/JSON/GraphML 结果。
+
+如果只是想快速验证流程，可以先跑少量实验室：
 
 ```bash
 python -m src.pipeline.run_all --limit-labs 2
 ```
 
-单独跑一个老师/实验室：
+如果暂时没有 GitHub Token，或者只想先更新论文和作者关系，可以跳过 GitHub 工程信号：
+
+```bash
+python -m src.pipeline.run_all --no-github
+```
+
+如果只想更新一个老师/实验室：
 
 ```bash
 python -m src.pipeline.run_lab \
@@ -124,7 +134,33 @@ python -m src.pipeline.run_lab \
   --keywords "LLM,PEFT,LoRA"
 ```
 
-本地数据库文件是 `data/radar.db`，默认不会上传到 GitHub。
+本地数据和产物位置：
+
+- `data/radar.db`：本地 SQLite 工作数据库
+- `data/raw/`：公开数据源缓存
+- `data/exports/`：生成的 CSV、HTML、JSON、GraphML
+
+更新数据后，可以重新生成方向图或老师恒星图：
+
+```bash
+python -m src.graph.export_direction_graph \
+  --direction "Agent" \
+  --keywords "AI Agent,LLM Agent,multi-agent,tool use,planning"
+```
+
+```bash
+python -m src.graph.export_pi_ego_graph --pi "Xipeng Qiu" --max-students 16
+```
+
+也可以传入自己的 seed 文件：
+
+```bash
+python -m src.pipeline.run_all --seeds data/seeds/labs_seed.yaml
+```
+
+## 本地数据库
+
+本地数据库文件是 `data/radar.db`，默认不会上传到 GitHub。初始化、更新和重新导出图谱的命令见上面的“数据下载与更新”。
 
 ## 可视化面板
 
