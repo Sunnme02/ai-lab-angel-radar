@@ -82,7 +82,12 @@ python -m src.graph.export_pi_ego_graph --pi "Xipeng Qiu" --max-students 16
 - `.json` 方便给其他程序或 LLM 使用
 - `.graphml` 方便导入 Gephi、Cytoscape 等图分析工具
 
-`data/exports/` 默认不会上传到 GitHub，避免把本地生成数据一起公开。
+可复用的底层表和完整大图会分开放：
+
+- `data/tables/`：`labs.csv`、`people.csv`、`papers.csv`、`relationships.csv`、各类 score CSV
+- `data/graphs/`：完整大图 `graph.json/graphml/html`，适合二次图分析，日常不需要打开
+
+`data/exports/`、`data/tables/` 和 `data/graphs/` 默认不会上传到 GitHub，避免把本地生成数据一起公开。
 
 ## 安装
 
@@ -104,7 +109,7 @@ cp .env.example .env
 
 ## 数据下载与更新
 
-这个仓库默认不包含完整本地数据。原因是 `data/radar.db`、`data/raw/` 和 `data/exports/` 里可能包含缓存的公开论文数据、推断关系、分析结果和本地生成产物，不适合直接随 GitHub 发布。
+这个仓库默认不包含完整本地数据。原因是 `data/radar.db`、`data/raw/`、`data/exports/`、`data/tables/` 和 `data/graphs/` 里可能包含缓存的公开论文数据、推断关系、分析结果和本地生成产物，不适合直接随 GitHub 发布。
 
 clone 仓库后，使用者需要在本地重新构建数据：
 
@@ -112,7 +117,7 @@ clone 仓库后，使用者需要在本地重新构建数据：
 python -m src.pipeline.run_all
 ```
 
-这一步会从配置好的种子实验室出发，采集公开学术数据，更新本地 SQLite 数据库，并导出基础 CSV/HTML/JSON/GraphML 结果。
+这一步会从配置好的种子实验室出发，采集公开学术数据，更新本地 SQLite 数据库，并导出基础表、图谱和分析结果。
 
 如果只是想快速验证流程，可以先跑少量实验室：
 
@@ -139,7 +144,9 @@ python -m src.pipeline.run_lab \
 
 - `data/radar.db`：本地 SQLite 工作数据库
 - `data/raw/`：公开数据源缓存
-- `data/exports/`：生成的 CSV、HTML、JSON、GraphML
+- `data/exports/`：生成的方向图、老师图、审查报告和 memo
+- `data/tables/`：可复用 CSV 数据表
+- `data/graphs/`：完整大图 JSON/GraphML/HTML，适合二次分析
 
 更新数据后，可以重新生成方向图或老师恒星图：
 

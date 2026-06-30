@@ -38,6 +38,21 @@ FALLBACK_KEYWORDS = {
         "sim2real",
         "robot learning",
     ],
+    "multimodal": [
+        "Multimodal",
+        "Multi-modal",
+        "multimodal learning",
+        "vision-language",
+        "vision language",
+        "vision-language model",
+        "large multimodal model",
+        "VLM",
+        "LVLM",
+        "MLLM",
+        "image-text",
+        "visual-language",
+        "CLIP",
+    ],
 }
 
 FALLBACK_ALIASES = {
@@ -46,6 +61,10 @@ FALLBACK_ALIASES = {
     "代理": "agent",
     "具身": "embodied",
     "机器人": "embodied",
+    "多模态": "multimodal",
+    "跨模态": "multimodal",
+    "视觉语言": "multimodal",
+    "图文": "multimodal",
 }
 
 

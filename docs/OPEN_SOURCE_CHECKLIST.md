@@ -7,7 +7,8 @@ Use this before creating the public GitHub repository.
 - Revoke and recreate any token that has ever appeared in `.env`.
 - Confirm `.env` is not staged or committed.
 - Confirm `data/radar.db` is not staged or committed.
-- Confirm `data/exports/`, `data/raw/`, and `data/processed/` are not staged.
+- Confirm `data/exports/`, `data/tables/`, `data/graphs/`, `data/raw/`, and
+  `data/processed/` are not staged.
 - Decide whether bundled frontend libraries under `lib/` should remain vendored
   or move to package-managed dependencies.
 - Add a license before publishing.
@@ -29,4 +30,3 @@ Use this before creating the public GitHub repository.
   intentionally create a sanitized demo database.
 - Parent workspace files such as `.claude/` and local Chinese notes are not part
   of the open-source repo.
-

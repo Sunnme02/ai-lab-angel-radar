@@ -8,6 +8,8 @@ data/radar.db
 *.sqlite
 *.sqlite3
 data/exports/
+data/tables/
+data/graphs/
 data/raw/
 data/processed/
 

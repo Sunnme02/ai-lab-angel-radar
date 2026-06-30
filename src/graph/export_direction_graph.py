@@ -35,8 +35,23 @@ LEGEND_ITEMS = [
     ("school", "学校/机构"),
 ]
 
+SLUG_ALIASES = {
+    "世界模型": "world_model",
+    "智能体": "agent",
+    "具身": "embodied",
+    "具身智能": "embodied_ai",
+    "机器人": "robotics",
+    "多模态": "multimodal",
+    "跨模态": "cross_modal",
+    "视觉语言": "vision_language",
+    "自动驾驶": "autonomous_driving",
+}
+
 
 def slugify(text: str) -> str:
+    text = (text or "").strip()
+    if text in SLUG_ALIASES:
+        return SLUG_ALIASES[text]
     value = re.sub(r"[^a-z0-9]+", "_", (text or "").strip().lower())
     return value.strip("_") or "direction"
 
@@ -259,7 +274,6 @@ def build_direction_graph(
         "shown_labs": len(selected),
         "max_labs": max_labs,
         "max_students_per_lab": max_students_per_lab,
-        "db_path": str(DB_PATH),
     }
     meta.update(summarize(graph))
     return graph, meta
@@ -436,4 +450,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

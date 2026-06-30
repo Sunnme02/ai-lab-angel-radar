@@ -20,10 +20,16 @@ def _df(sess, model):
 
 def export_all(db, sess, exports_dir):
     os.makedirs(exports_dir, exist_ok=True)
+    exports_dir = os.path.abspath(exports_dir)
+    data_dir = os.path.dirname(exports_dir)
+    tables_dir = os.path.join(data_dir, "tables")
+    graphs_dir = os.path.join(data_dir, "graphs")
+    os.makedirs(tables_dir, exist_ok=True)
+    os.makedirs(graphs_dir, exist_ok=True)
 
     def dump(model, name):
         df = _df(sess, model)
-        df.to_csv(os.path.join(exports_dir, name), index=False)
+        df.to_csv(os.path.join(tables_dir, name), index=False)
         return len(df)
 
     n = {
@@ -39,19 +45,19 @@ def export_all(db, sess, exports_dir):
     for et, fname in [("lab", "lab_scores.csv"), ("person", "person_scores.csv"),
                       ("repo", "repo_scores.csv")]:
         sub = scores[scores["entity_type"] == et] if not scores.empty else scores
-        sub.to_csv(os.path.join(exports_dir, fname), index=False)
+        sub.to_csv(os.path.join(tables_dir, fname), index=False)
         n[fname] = len(sub)
 
-    # 完整图(JSON/GraphML,供分析)+ 精简核心图(HTML 可视化,避免毛球)
+    # 完整图(JSON/GraphML)放 data/graphs 供分析复用；exports 只留用户直接看的结果。
     G = build_graph(sess)
-    to_json(G, os.path.join(exports_dir, "graph.json"))
+    to_json(G, os.path.join(graphs_dir, "graph.json"))
     try:
-        to_graphml(G, os.path.join(exports_dir, "graph.graphml"))
+        to_graphml(G, os.path.join(graphs_dir, "graph.graphml"))
     except Exception as e:  # noqa: BLE001
         log.warning(f"GraphML 导出失败: {e}")
     core = build_core_graph(sess)
     try:
-        to_pyvis_html(core, os.path.join(exports_dir, "graph.html"))
+        to_pyvis_html(core, os.path.join(graphs_dir, "graph.html"))
     except Exception as e:  # noqa: BLE001
         log.warning(f"PyVis HTML 导出失败: {e}")
     n["graph"] = (f"完整 {G.number_of_nodes()}节点/{G.number_of_edges()}边 · "

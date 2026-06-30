@@ -32,7 +32,9 @@ not publish the parent folder as-is.
 These are intentionally ignored by git:
 
 - `data/radar.db`: local SQLite working database.
-- `data/exports/`: generated CSV, JSON, GraphML and HTML outputs.
+- `data/exports/`: generated user-facing graph/report outputs.
+- `data/tables/`: reusable CSV table exports.
+- `data/graphs/`: full graph exports for downstream graph analysis.
 - `data/raw/` and `data/processed/`: caches/intermediate data.
 
 Seed files that are safe to review and version:
